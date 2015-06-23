@@ -1,0 +1,42 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+.population {
+  border: 1px solid black;
+  display: inline-block;
+  height: 302px;
+  width: 302px;
+}
+
+.colour {
+  float: left;
+  height: 30px;
+  width: 30px;
+}
+
+.active {
+  border: 2px solid black;
+}
+
+.idealColour {
+  border: 1px solid black;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
