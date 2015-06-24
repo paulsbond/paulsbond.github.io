@@ -5,31 +5,41 @@
         <meta name="author" content="Paul Bond">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <link href="style/bootstrap.min.css" rel="stylesheet">
         <link href="style/evolve.css" rel="stylesheet">
         <link href="style/jquery.nouislider.min.css" rel="stylesheet">
     </head>
     <body>
-        <section id="introduction">
-            <h2>Colour Evolution</h2>
-            <p>
-                This is a page I made to give an introduction to genetic algorithms.
-                A genetic algorithm is a type of optimisation algorithm used in artificial intelligence that is inspired by biological evolution.
-                Here, I've used the same concepts to evolve a population of randomly chosen colours towards an 'ideal' colour.
-            </p>
-        </section>
+        <header>
+            <div class="container">
+                <h1>Colour Evolution</h1>
+                <p>
+                    This is a page I made to give an introduction to genetic algorithms.
+                    A genetic algorithm is a type of optimisation algorithm used in artificial intelligence that is inspired by biological evolution.
+                    Here, I've used the same concepts to evolve a population of randomly chosen colours towards an 'ideal' colour.
+                </p>
+            </div>
+        </header>
         
-        <section>
-            <section>
-                <div id="idealColour" class="idealColour"></div>
-                <div id="idealR" class="rgbinput"></div>
-                <div id="idealG" class="rgbinput"></div>
-                <div id="idealB" class="rgbinput"></div>
-            </section>
-            <section>
-                <button id="startStopButton">Start</button>
-                <button id="resetButton">Reset</button>
-            </section>
-            <section id="population" class="population"></section>
+        <section class="app">
+            <div class="container">
+                <div class="col-sm-6">
+                    <div id="idealColour" class="idealColour"></div>
+                    <div id="idealR" class="rgbinput"></div>
+                    <p class="rgbval">Red: <span id="idealRval"></span></p>
+                    <div id="idealG" class="rgbinput"></div>
+                    <p class="rgbval">Green: <span id="idealGval"></span></p>
+                    <div id="idealB" class="rgbinput"></div>
+                    <p class="rgbval">Blue: <span id="idealBval"></span></p>
+                    <div class="buttons">
+                        <button id="startStopButton" class="btn btn-default">Start</button>
+                        <button id="randomiseButton" class="btn btn-default">Randomise</button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <section id="population" class="population"></section>
+                </div>
+            </div>
         </section>
         
         <script src="scripts/jquery.min.js"></script>

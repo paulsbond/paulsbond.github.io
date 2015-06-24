@@ -1,42 +1,52 @@
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 body {
-  font-family: Arial, sans-serif;
   font-size: 16px;
-  margin: 0;
   text-align: center;
 }
 
-h1 {
-  font-weight: 500;
+.app {
+  background-color: #eee;
+}
+
+.container {
+  max-width: 768px;
 }
 
 .population {
-  border: 1px solid black;
-  display: inline-block;
-  height: 302px;
-  width: 302px;
+  border: 1px solid #000;
+  margin: 10px auto;
+  overflow: hidden;
+  max-width: 300px;
+}
+
+.buttons {
+  margin: 10px 0;
 }
 
 .colour {
   float: left;
-  height: 30px;
-  width: 30px;
-}
-
-.active {
-  border: 2px solid black;
+  width: 10%;
+  padding-bottom: 10%;
 }
 
 .idealColour {
-  border: 1px solid black;
-  display: inline-block;
-  height: 50px;
-  width: 50px;
+  border: 1px solid #000;
+  height: 80px;
+  width: 80px;
+  margin: 10px auto 20px auto;
+}
+
+.rgbinput, .rgbval {
+  margin: 5px 0;
+}
+
+#idealR {
+  background-color: #f00;
+}
+
+#idealG {
+  background-color: #0f0;
+}
+
+#idealB {
+  background-color: #00f;
 }

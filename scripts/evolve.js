@@ -131,7 +131,7 @@ $(function() {
     population[weakId] = child;
   };
   
-  var reset = function() {
+  var randomise = function() {
     while (div.firstChild) {
       div.removeChild(div.firstChild);
     }
@@ -155,6 +155,9 @@ $(function() {
     		decimals: 0
     	})
     });
+    $("#idealR").Link('lower').to($('#idealRval'));
+    $("#idealG").Link('lower').to($('#idealGval'));
+    $("#idealB").Link('lower').to($('#idealBval'));
   };
   
   // event handlers
@@ -172,16 +175,16 @@ $(function() {
     }
   });
   
-  $("#resetButton").click(function() {
-    reset();
+  $("#randomiseButton").click(function() {
+    randomise();
   });
   
   $('.rgbinput').on('slide', changeIdeal);
   
   // main
   
-  reset();
-  changeIdeal();
+  randomise();
   setupSliders();
+  changeIdeal();
 
 });
