@@ -54,7 +54,7 @@ $(function() {
     var R = $("#idealR").val();
     var G = $("#idealG").val();
     var B = $("#idealB").val();
-    ideal = { R, G, B };
+    ideal = { R: R, G: G, B: B };
     idealDiv.setAttribute('style', 'background-color:RGB('+R+','+G+','+B+')');
     totalFitness = 0;
     for (var i=0; i<100; i++) {
