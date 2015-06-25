@@ -64,6 +64,10 @@ $(function() {
   }
   
   var advanceDay = function() {
+    if (totalFitness === 10000) {
+      startStop();
+      return;
+    }
     var parents = chooseParents();
     var child = breed(parents[0], parents[1]);
     mutate(child);
@@ -160,24 +164,25 @@ $(function() {
     $("#idealB").Link('lower').to($('#idealBval'));
   };
   
-  // event handlers
-  
-  $("#startStopButton").click(function() {
+  var startStop = function() {
+    var button = $("#startStopButton");
     if (running) {
       clearInterval(interval);
-      $(this).html("Start");
+      button.html("Start");
       running = false;
     }
     else {
       interval = setInterval(function() { advanceDay(); }, 10);
-      $(this).html("Stop");
+      button.html("Stop");
       running = true;
     }
-  });
+  }
   
-  $("#randomiseButton").click(function() {
-    randomise();
-  });
+  // event handlers
+  
+  $("#startStopButton").click(startStop);
+  
+  $("#randomiseButton").click(randomise);
   
   $('.rgbinput').on('slide', changeIdeal);
   
