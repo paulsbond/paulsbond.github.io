@@ -1,0 +1,30 @@
+<form name="setupForm" ng-submit="setupForm.$valid && submit()" novalidate>
+  
+  <p>Enter player names and card names to continue.</p>
+  
+  <div class="form-group">
+    <h2>Players</h2>
+    <div class="input-group" ng-repeat="player in players">
+      <input class="form-control" ng-model="player.name" placeholder="Player Name" required>
+      <span class="input-group-btn">
+        <button class="btn btn-default" ng-disabled="players.length < 4" ng-click="removePerson($index)">-</button>
+      </span>
+    </div>
+    <button class="btn btn-default" ng-click="addPerson()" ng-show="players.length < 6">+</button>
+  </div>
+  
+  <div class="form-group">
+    <h2>Card Set</h2>
+    <select class="form-control" ng-model="cardSet" ng-options="s.name for s in cardSets" required></select>
+  </div>
+  
+  <div class="form-group">
+    <h2>Hand</h2>
+    <select class="form-control" ng-model="hand" ng-options="c.name group by c.group for c in cardSet.cards" multiple required></select>
+  </div>
+  
+  <div class="form-group">
+    <input type="submit" class="btn btn-default" value="Continue">
+  </div>
+  
+</form>

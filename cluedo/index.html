@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title>Cluedo Solver</title>
+    <meta name="author" content="Paul Bond">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1><a href="#/home">Cluedo Solver</a></h1>
+      <ng-view></ng-view>
+    </div>
+    <script src="lib/angular.1.4.6.js"></script>
+    <script src="lib/angular-route.1.4.6.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/addturn.js"></script>
+    <script src="controllers/home.js"></script>
+    <script src="controllers/overview.js"></script>
+    <script src="controllers/setup.js"></script>
+    <script src="controllers/turns.js"></script>
+    <script src="services/config.js"></script>
+    <script src="services/data.js"></script>
+    <script src="services/logic.js"></script>
+    <script src="services/store.js"></script>
+  </body>
+</html>

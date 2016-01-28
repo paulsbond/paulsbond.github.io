@@ -1,0 +1,19 @@
+<a href="#/addturn">Add Turn</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+      <th ng-repeat="player in players"> {{player.name}}
+  <tbody>
+    <tr ng-repeat="suspect in cards | filter : {group:'Suspect'}">
+      <td> {{suspect.name}}
+      <td ng-repeat="player in players"> {{logic.hasCard(player.name,suspect.name)}}
+  <tbody>
+    <tr ng-repeat="weapon in cards | filter : {group:'Weapon'}">
+      <td> {{weapon.name}}
+      <td ng-repeat="player in players"> {{logic.hasCard(player.name,weapon.name)}}
+  <tbody>
+    <tr ng-repeat="location in cards | filter : {group:'Location'}">
+      <td> {{location.name}}
+      <td ng-repeat="player in players"> {{logic.hasCard(player.name,location.name)}}
+</table>

@@ -1,0 +1,74 @@
+﻿* {
+  margin: 0;
+}
+
+html {
+  background-image: url('images/fountains.jpg');
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  height: 100%;
+}
+
+header {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.intro {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-size: 60px;
+}
+
+header img {
+  position: absolute;
+  bottom: 20px;
+  width: 30px;
+  margin-left: -15px;
+}
+
+.projects {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 30px;
+  border-bottom:  1px solid #ccc;
+}
+
+.project {
+  display: inline-block;
+  padding: 10px;
+  width: 150px;
+  border: 1px solid #ccc;
+  margin: 20px 10px;
+}
+
+.project a {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 10px auto;
+}
