@@ -1,5 +1,11 @@
 body {
   text-align: center;
+  background-image: url("../images/background.jpg");
+  color: #333;
+}
+
+h2 {
+  font-size: 1.7em;
 }
 
 [ng-cloak] {
@@ -8,8 +14,24 @@ body {
 
 a:link, a:visited, a:hover, a:focus, a:active {
   text-decoration: none;
+  color: #333;
 }
 
 th {
   text-align: center;
+}
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+button.checked {
+  border-color: #4cae4c;
+  background-color: #aceaac;
 }

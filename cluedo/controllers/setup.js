@@ -10,6 +10,8 @@
     $scope.cardSet = data.cardSets[0];
     $scope.hand = [{},{},{}];
 
+    $scope.cardSet.cards[0].inHand = true;
+
     $scope.addPerson = function() {
       $scope.players.push({});
     };
@@ -30,7 +32,7 @@
       
       for (var i in $scope.cardSet.cards) {
         var card = $scope.cardSet.cards[i];
-        var inHand = $scope.hand.indexOf(card) !== -1;
+        var inHand = card.inHand === true;
         logic.addDeduction(store.players[0].name, card.name, inHand);
       }
       
