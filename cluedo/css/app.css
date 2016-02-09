@@ -35,3 +35,7 @@ button.checked {
   border-color: #4cae4c;
   background-color: #aceaac;
 }
+
+.form-group.no-header{
+  margin-top: 20px;
+}

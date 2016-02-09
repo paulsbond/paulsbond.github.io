@@ -10,7 +10,10 @@
     $scope.cardSet = data.cardSets[0];
     $scope.hand = [{},{},{}];
 
-    $scope.cardSet.cards[0].inHand = true;
+    // Fix for bootstrap buttons retaining focus after click
+    $scope.blur = function($event) {
+      $event.currentTarget.blur();
+    };
 
     $scope.addPerson = function() {
       $scope.players.push({});
