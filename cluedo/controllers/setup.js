@@ -2,13 +2,15 @@
   var app = angular.module('app');
   
   app.controller('SetupController',
-    ['$scope', '$location', 'store', 'data', 'logic', 'config',
-    function($scope, $location, store, data, logic, config) {
-    
-    $scope.players = store.players || [{},{},{}];
+    ['$scope', '$location', '$localStorage', 'data', 'logic', 'config',
+    function($scope, $location, $localStorage, data, logic, config) {
+
+    $scope.$store = $localStorage.$default({
+        players: [{},{},{}],
+    });
+
     $scope.cardSets = data.cardSets;
     $scope.cardSet = data.cardSets[0];
-    $scope.hand = [{},{},{}];
 
     // Fix for bootstrap buttons retaining focus after click
     $scope.blur = function($event) {
@@ -16,27 +18,24 @@
     };
 
     $scope.addPerson = function() {
-      $scope.players.push({});
+      $localStorage.players.push({});
     };
 
     $scope.removePerson = function(index) {
-      $scope.players.splice(index, 1);
+      $localStorage.players.splice(index, 1);
     };
 
     $scope.submit = function() {
-      store.clear();
+      $localStorage.version = config.version;
+      $localStorage.cards = $scope.cardSet.cards;
+      $localStorage.turns = [];
+      $localStorage.deductions = [];
+      $localStorage.possibilities = [];
       
-      store.put('version', config.version);
-      store.put('players', $scope.players);
-      store.put('cards', $scope.cardSet.cards);
-      store.put('turns', []);
-      store.put('deductions', []);
-      store.put('possibilities', []);
-      
-      for (var i in $scope.cardSet.cards) {
-        var card = $scope.cardSet.cards[i];
+      for (var i in $localStorage.cards) {
+        var card = $localStorage.cards[i];
         var inHand = card.inHand === true;
-        logic.addDeduction(store.players[0].name, card.name, inHand);
+        logic.addDeduction($localStorage.players[0].name, card.name, inHand);
       }
       
       $location.url('overview');

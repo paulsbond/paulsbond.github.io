@@ -1,7 +1,9 @@
 (function() {
   var app = angular.module('app');
   
-  app.factory('logic', ['store', function(store) {
+  app.factory('logic', 
+    ['$localStorage', 
+    function($localStorage) {
     
     var logic = {
       
@@ -10,7 +12,7 @@
         // Check if a deduction already exists
         if (this.hasCard(player, card) !== null) return;
 
-        store.add('deductions', {
+        $localStorage.deductions.push({
           player: player,
           card: card,
           hasCard: hasCard
@@ -20,8 +22,8 @@
         
         // If player has card, other players don't
         if (hasCard) {
-          for (var i in store.players) {
-            var other = store.players[i].name;
+          for (var i in $localStorage.players) {
+            var other = $localStorage.players[i].name;
             if (other !== player) {
               this.addDeduction(other, card, false);
             }
@@ -45,8 +47,8 @@
         }
         
         // Check if possibility is covered
-        for (var i in store.possibilities) {
-          var possibility = store.possibilities[i];
+        for (var i in $localStorage.possibilities) {
+          var possibility = $localStorage.possibilities[i];
           if (player !== possibility.player) continue;
           var covered = true;
           for (var j in possibility.guess) {
@@ -56,7 +58,7 @@
           if (covered) return;
         }
         
-        store.add('possibilities', {
+        $localStorage.possibilities.push({
           player: player,
           guess: guess
         });
@@ -65,7 +67,7 @@
             
       addTurn: function(player, guess, responses) {
         
-        store.add('turns', {
+        $localStorage.turns.push({
           player: player,
           guess: guess,
           responses: responses
@@ -94,8 +96,8 @@
       },
       
       hasCard: function(player, card) {
-        for (var i in store.deductions) {
-          var deduction = store.deductions[i];
+        for (var i in $localStorage.deductions) {
+          var deduction = $localStorage.deductions[i];
           if (deduction.player === player && deduction.card === card) {
             return deduction.hasCard;
           }
@@ -104,11 +106,11 @@
       },
       
       updatePossibilities: function(player, card, hasCard) {
-        for (var i in store.possibilities) {
-          var possibility = store.possibilities[i];
+        for (var i in $localStorage.possibilities) {
+          var possibility = $localStorage.possibilities[i];
           if (player !== possibility.player) continue;
           if (possibility.guess.indexOf(card) === -1) continue;
-          store.remove('possibilities', i);
+          $localStorage.possibilities.splice(i, 1);
           if (!hasCard) {
             var newList = possibility.guess;
             for (var j in newList) {

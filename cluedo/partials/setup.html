@@ -1,26 +1,26 @@
 <form name="setupForm" ng-submit="setupForm.$valid && submit()" novalidate>
-  
+
   <div class="form-group">
     <h2>User</h2>
-    <input class="form-control" ng-model="players[0].name" placeholder="Your Name" required>
+    <input class="form-control" ng-model="$store.players[0].name" placeholder="Your Name" required>
   </div>
-  
+
   <div class="form-group">
-    <h2>Players</h2>
-    <div class="input-group" ng-repeat="player in players" ng-if="!$first">
+    <h2>Other Players</h2>
+    <div class="input-group" ng-repeat="player in $store.players" ng-if="!$first">
       <input class="form-control" ng-model="player.name" placeholder="Player Name" required>
       <span class="input-group-btn">
-        <button class="btn btn-default" ng-disabled="players.length < 4" ng-click="removePerson($index)">x</button>
+        <button class="btn btn-default" ng-disabled="$store.players.length < 4" ng-click="removePerson($index)">x</button>
       </span>
     </div>
-    <button class="btn btn-default" ng-click="addPerson()" ng-show="players.length < 6">+</button>
+    <button class="btn btn-default" ng-click="addPerson()" ng-show="$store.players.length < 6">+</button>
   </div>
-  
+
   <div class="form-group">
     <h2>Card Set</h2>
     <select class="form-control" ng-model="cardSet" ng-options="s.name for s in cardSets" required></select>
   </div>
-  
+
   <div class="form-group">
     <h2>Hand</h2>
 
@@ -34,9 +34,9 @@
         </button>
       </div>
     </div>
-  
+
   <div class="form-group no-header">
     <input type="submit" class="btn btn-default" value="Continue">
   </div>
-  
+
 </form>

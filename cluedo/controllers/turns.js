@@ -2,11 +2,11 @@
   var app = angular.module('app');
   
   app.controller('TurnsController',
-    ['$scope', '$location', 'store',
-    function($scope, $location, store) {
+    ['$scope', '$location', '$localStorage',
+    function($scope, $location, $localStorage) {
 
-    $scope.turns = store.turns;
-    
+    $scope.$store = $localStorage;
+
     $scope.summary = function(response) {
       var summary = response.player;
       if (response.hasCard === "true") {

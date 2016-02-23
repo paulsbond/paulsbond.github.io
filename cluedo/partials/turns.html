@@ -6,7 +6,7 @@
       <th>Guess
       <th>Responses
   <tbody>
-    <tr ng-repeat="turn in turns">
+    <tr ng-repeat="turn in $store.turns">
       <td>{{$index + 1}}
       <td>{{turn.player}}
       <td>{{turn.guess[0]}}<br>{{turn.guess[1]}}<br>{{turn.guess[2]}}
@@ -15,4 +15,3 @@
           {{summary(response)}}<br>
         </span>
       </td>
-      

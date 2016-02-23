@@ -1,9 +1,12 @@
 (function(){
   var app = angular.module('app');
   
-  app.controller('OverviewController', ['$scope', 'store', 'logic', function($scope, store, logic) {
-    $scope.players = store.players;
-    $scope.cards = store.cards;
+  app.controller('OverviewController', 
+  ['$scope', '$localStorage', 'logic',
+  function($scope, $localStorage, logic) {
+    
+    $scope.$store = $localStorage;
     $scope.logic = logic;
+    
   }]);
 })();

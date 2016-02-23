@@ -1,9 +1,13 @@
 (function(){
   var app = angular.module('app');
   
-  app.controller('HomeController', ['$scope', '$location', 'store', 'config', function($scope, $location, store, config) {
+  app.controller('HomeController',
+    ['$scope', '$location', '$localStorage', 'config',
+    function($scope, $location, $localStorage, config) {
     
-    $scope.canContinue = store.version === config.version;
+    $scope.$store = $localStorage;
+    
+    $scope.canContinue = $localStorage.version === config.version;
     
     $scope.newGame = function() {
       $location.url('setup');

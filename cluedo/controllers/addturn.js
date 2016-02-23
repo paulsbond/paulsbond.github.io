@@ -1,32 +1,24 @@
 (function(){
   var app = angular.module('app');
   
-  app.controller('AddTurnController', ['$scope', '$location', '$filter', 'store', 'logic', function($scope, $location, $filter, store, logic) {
+  app.controller('AddTurnController', 
+    ['$scope', '$location', '$filter', '$localStorage', 'logic',
+    function($scope, $location, $filter, $localStorage, logic) {
     
-    $scope.players = store.players;
+    $scope.$store = $localStorage;
     
-    $scope.suspects = [];
-    $scope.weapons = [];
-    $scope.locations = [];
-    for (var card in store.cards) {
-      card = store.cards[card];
-      if (card.group === "Suspect") $scope.suspects.push(card);
-      else if (card.group === "Weapon") $scope.weapons.push(card);
-      else if (card.group === "Location") $scope.locations.push(card);
-    }
-    
-    $scope.player = $scope.players[0].name;
+    $scope.player = $localStorage.players[0].name;
     
     $scope.guess = [
-      $scope.suspects[0].name,
-      $scope.weapons[0].name,
-      $scope.locations[0].name
+      $filter('filter')($localStorage.cards,{group:"Suspect"})[0].name,
+      $filter('filter')($localStorage.cards,{group:"Weapon"})[0].name,
+      $filter('filter')($localStorage.cards,{group:"Location"})[0].name
     ];
     
     $scope.responses = [];
-    for (var i in $scope.players) {
+    for (var i in $localStorage.players) {
       $scope.responses.push({
-        player: $scope.players[i].name ,
+        player: $localStorage.players[i].name ,
         hasCard: "null",
         card: "null"
       });
