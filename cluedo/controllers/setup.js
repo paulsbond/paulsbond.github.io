@@ -2,8 +2,8 @@
   var app = angular.module('app');
   
   app.controller('SetupController',
-    ['$scope', '$location', '$localStorage', 'data', 'logic', 'config',
-    function($scope, $location, $localStorage, data, logic, config) {
+    ['$scope', '$location', '$localStorage', 'data', 'logic',
+    function($scope, $location, $localStorage, data, logic) {
 
     $scope.$store = $localStorage.$default({
         players: [{},{},{}],
@@ -11,11 +11,6 @@
 
     $scope.cardSets = data.cardSets;
     $scope.cardSet = data.cardSets[0];
-
-    // Fix for bootstrap buttons retaining focus after click
-    $scope.blur = function($event) {
-      $event.currentTarget.blur();
-    };
 
     $scope.addPerson = function() {
       $localStorage.players.push({});
@@ -26,7 +21,6 @@
     };
 
     $scope.submit = function() {
-      $localStorage.version = config.version;
       $localStorage.cards = $scope.cardSet.cards;
       $localStorage.turns = [];
       $localStorage.deductions = [];

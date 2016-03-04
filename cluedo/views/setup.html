@@ -26,12 +26,9 @@
 
     <div class="row no-gutter">
       <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="card in cardSet.cards">
-        <button type="button" class="btn btn-default btn-block"
-                ng-class="{checked: card.inHand}"
-                ng-click="card.inHand = !card.inHand"
-                ng-mouseup="blur($event)">
-          {{card.name}}
-        </button>
+        <div class="checkbox">
+          <label><input type="checkbox" ng-model="card.inHand">{{card.name}}</label>
+        </div>
       </div>
     </div>
 

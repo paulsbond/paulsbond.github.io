@@ -1,6 +1,5 @@
 <form name="addTurnForm" ng-submit="addTurnForm.$valid && submit()" novalidate>
-  
-  <p>Enter turn information.</p>
+
   <div class="col-sm-6">
     <div class="form-group">
       <h2>Player</h2>
@@ -27,12 +26,12 @@
     <h2>Responses</h2>
     <div class="form-group" ng-repeat="response in responses" ng-hide="player === response.player">
       <h3>{{response.player}}</h3>
-      <select class="form-control" ng-model="response.hasCard" required>
+      <select class="form-control" ng-model="response.showedCard" required>
         <option value="null">No response</option>
         <option value="true">Showed a card</option>
         <option value="false">Couldn't show a card</option>
       </select>
-      <select class="form-control" ng-model="response.card" ng-show="response.hasCard == 'true'" required>
+      <select class="form-control" ng-model="response.card" ng-show="response.showedCard == 'true'" required>
         <option value="null">Unknown</option>
         <option>{{guess[0]}}</option>
         <option>{{guess[1]}}</option>

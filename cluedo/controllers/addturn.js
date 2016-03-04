@@ -18,8 +18,8 @@
     $scope.responses = [];
     for (var i in $localStorage.players) {
       $scope.responses.push({
-        player: $localStorage.players[i].name ,
-        hasCard: "null",
+        player: $localStorage.players[i].name,
+        showedCard: "null",
         card: "null"
       });
     }
@@ -30,7 +30,7 @@
       var validResponses = [];
       for (var response in $scope.responses) {
         response = $scope.responses[response];
-        if (response.player !== $scope.player && response.hasCard !== "null") {
+        if (response.player !== $scope.player && response.showedCard !== "null") {
           validResponses.push(response)
         }
       }

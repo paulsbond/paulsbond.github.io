@@ -33,38 +33,56 @@
       
       addPossibility: function(player, guess) {
         
-        // Account for relevant deductions
+        // Get possible cards accounting for deductions
+        var cards = [];
         for (var i in guess) {
           var hasCard = this.hasCard(player, guess[i]);
           if (hasCard === true) return;
-          if (hasCard === false) guess.splice(i, 1);
+          if (hasCard === null) cards.push(guess[i]);
         }
         
+        // TODO: If 0 cards are left then turn is inconsistent
+        
         // Change to a deduction if only one option is left
-        if (guess.length === 1) {
-          this.addDeduction(player, guess[0], true);
+        if (cards.length === 1) {
+          this.addDeduction(player, cards[0], true);
           return;
         }
         
-        // Check if possibility is covered
         for (var i in $localStorage.possibilities) {
           var possibility = $localStorage.possibilities[i];
           if (player !== possibility.player) continue;
+          
+          // Check if possibility is covered
           var covered = true;
-          for (var j in possibility.guess) {
-            var card = possibility.guess[j];
-            if (guess.indexOf(card) === -1) covered = false;
+          for (var j in possibility.cards) {
+            var card = possibility.cards[j];
+            if (cards.indexOf(card) === -1) covered = false;
           }
           if (covered) return;
+          
+          // Mark old possibilities that should be removed
+          var old = true;
+          for (var j in cards) {
+            var card = cards[j];
+            if (possibility.cards.indexOf(card) === -1) old = false;
+          }
+          if (old) possibility.old = true;
         }
+        
+        // Remove old possibilities
+        $localStorage.possibilities = $localStorage.possibilities
+          .filter(function(item) {
+            return !item.old;
+        });
         
         $localStorage.possibilities.push({
           player: player,
-          guess: guess
+          cards: cards
         });
         
       },
-            
+      
       addTurn: function(player, guess, responses) {
         
         $localStorage.turns.push({
@@ -78,7 +96,7 @@
           resp = responses[resp];
           
           // Responding player has a card
-          if (resp.hasCard === 'true') {
+          if (resp.showedCard === 'true') {
             if (resp.card === 'null') {
               this.addPossibility(resp.player, guess);
             }
@@ -109,15 +127,16 @@
         for (var i in $localStorage.possibilities) {
           var possibility = $localStorage.possibilities[i];
           if (player !== possibility.player) continue;
-          if (possibility.guess.indexOf(card) === -1) continue;
+          if (possibility.cards.indexOf(card) === -1) continue;
           $localStorage.possibilities.splice(i, 1);
           if (!hasCard) {
-            var newList = possibility.guess;
-            for (var j in newList) {
-              if (newList[j] === card) newList.splice(j, 1);
+            var cards = possibility.cards;
+            for (var j in cards) {
+              if (cards[j] === card) cards.splice(j, 1);
+              break;
             }
-            if (newList.length == 1) this.addDeduction(player, newList[0], true);
-            if (newList.length == 2) this.addPossibility(player, newList);
+            if (cards.length == 1) this.addDeduction(player, cards[0], true);
+            if (cards.length == 2) this.addPossibility(player, cards);
           }
         }
       }
