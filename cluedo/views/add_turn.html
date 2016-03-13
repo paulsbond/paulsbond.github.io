@@ -1,0 +1,44 @@
+<ng-include src="'partials/nav.html'"></ng-include>
+
+<form name="addTurnForm" ng-submit="addTurnForm.$valid && submit()" novalidate>
+
+  <h3>Player</h3>
+  <select ng-model="player" required>
+    <option ng-repeat="player in $store.players">{{player.name}}</option>
+  </select>
+
+  <h3>Guess</h3>
+  <label>Suspect</label>
+  <select ng-model="guess[0]" required>
+    <option ng-repeat="card in $store.cards | filter : {group:'Suspect'}">{{card.name}}</option>
+  </select>
+  <label>Weapon</label>
+  <select ng-model="guess[1]" required>
+    <option ng-repeat="card in $store.cards | filter : {group:'Weapon'}">{{card.name}}</option>
+  </select>
+  <label>Location</label>
+  <select ng-model="guess[2]" required>
+    <option ng-repeat="card in $store.cards | filter : {group:'Location'}">{{card.name}}</option>
+  </select>
+
+  <h3>Responses</h3>
+  <div ng-repeat="response in responses" ng-hide="player === response.player">
+    <label>{{response.player}}</label>
+    <select ng-model="response.showedCard" required>
+      <option value="null">No response</option>
+      <option value="true">Showed a card</option>
+      <option value="false">Couldn't show a card</option>
+    </select>
+    <select ng-model="response.card" ng-show="response.showedCard == 'true'" required>
+      <option value="null">Unknown</option>
+      <option>{{guess[0]}}</option>
+      <option>{{guess[1]}}</option>
+      <option>{{guess[2]}}</option>
+    </select>
+  </div>
+  
+  <div>
+    <input type="submit" class="btn" value="Add Turn">
+  </div>
+  
+</form>

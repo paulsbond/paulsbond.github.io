@@ -10,7 +10,7 @@
       })
       .when('/addturn', {
         controller: 'AddTurnController',
-        templateUrl: 'views/addturn.html'
+        templateUrl: 'views/add_turn.html'
       })
       .when('/overview', {
         controller: 'OverviewController',

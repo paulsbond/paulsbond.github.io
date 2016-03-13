@@ -1,18 +1,49 @@
-<table class="table">
+<ng-include src="'partials/nav.html'"></ng-include>
+
+<table>
   <thead>
     <tr>
-      <th>
-      <th ng-repeat="player in $store.players"> {{player.name}}
-  <tbody>
-    <tr ng-repeat="suspect in $store.cards | filter : {group:'Suspect'}">
-      <td> {{suspect.name}}
-      <td ng-repeat="player in $store.players"> {{logic.hasCard(player.name,suspect.name)}}
-  <tbody>
-    <tr ng-repeat="weapon in $store.cards | filter : {group:'Weapon'}">
-      <td> {{weapon.name}}
-      <td ng-repeat="player in $store.players"> {{logic.hasCard(player.name,weapon.name)}}
-  <tbody>
-    <tr ng-repeat="location in $store.cards | filter : {group:'Location'}">
-      <td> {{location.name}}
-      <td ng-repeat="player in $store.players"> {{logic.hasCard(player.name,location.name)}}
+      <th ng-repeat="player in $store.players">{{player.name}}</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="card in $store.cards | filter : {group:'Suspect'}">
+    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr>
+      <td ng-repeat="player in $store.players">
+        <span ng-class="icon(player, card)"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th ng-repeat="player in $store.players">{{player.name}}</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="card in $store.cards | filter : {group:'Weapon'}">
+    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr>
+      <td ng-repeat="player in $store.players">
+        <span ng-class="icon(player, card)"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th ng-repeat="player in $store.players">{{player.name}}</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="card in $store.cards | filter : {group:'Location'}">
+    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr>
+      <td ng-repeat="player in $store.players">
+        <span ng-class="icon(player, card)"></span>
+      </td>
+    </tr>
+  </tbody>
 </table>

@@ -5,22 +5,26 @@
     ['$scope', '$location', '$localStorage', 'data', 'logic',
     function($scope, $location, $localStorage, data, logic) {
 
-    $scope.$store = $localStorage.$default({
-        players: [{},{},{}],
+    $scope.$store = $localStorage;
+    
+    $scope.players = [];
+    $scope.cardSet = data.cardSets[0];
+    $scope.numPlayers = 6;
+    $scope.cardSets = data.cardSets;
+
+    $scope.$watch('numPlayers', function(val) {
+      if (val < $scope.players.length) {
+        $scope.players = $scope.players.slice(0, val);
+      } else {
+        while (val !== $scope.players.length) {
+          $scope.players.push({});
+        }
+      }
     });
 
-    $scope.cardSets = data.cardSets;
-    $scope.cardSet = data.cardSets[0];
-
-    $scope.addPerson = function() {
-      $localStorage.players.push({});
-    };
-
-    $scope.removePerson = function(index) {
-      $localStorage.players.splice(index, 1);
-    };
-
     $scope.submit = function() {
+      $localStorage.$reset();
+      $localStorage.players = $scope.players;
       $localStorage.cards = $scope.cardSet.cards;
       $localStorage.turns = [];
       $localStorage.deductions = [];

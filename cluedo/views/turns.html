@@ -1,17 +1,17 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Turn
-      <th>Player
-      <th>Guess
-      <th>Responses
-  <tbody>
-    <tr ng-repeat="turn in $store.turns">
-      <td>{{$index + 1}}
-      <td>{{turn.player}}
-      <td>{{turn.guess[0]}}<br>{{turn.guess[1]}}<br>{{turn.guess[2]}}
-      <td>
-        <span ng-repeat="response in turn.responses">
-          {{summary(response)}}<br>
-        </span>
-      </td>
+<ng-include src="'partials/nav.html'"></ng-include>
+
+<fieldset ng-repeat="turn in $store.turns">
+  <legend>Turn {{$index+1}} - {{turn.player}}</legend>
+
+  <label>Guess</label>
+  <p>
+    {{turn.guess[0]}}<br/>
+    {{turn.guess[1]}}<br/>
+    {{turn.guess[2]}}<br/>
+  <p>
+
+  <label>Responses</label>
+  <p>
+    <span ng-repeat="response in turn.responses">{{summary(response)}}<br/></span>
+  </p>
+</fieldset>
