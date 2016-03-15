@@ -18,7 +18,10 @@
     };
     
     $scope.reset = function() {
-      if ($scope.canContinue()) $localStorage.$reset();
+      if (window.confirm("Clear all data?"))
+      {
+        if ($scope.canContinue()) $localStorage.$reset();
+      }
     };
 
   }]);
