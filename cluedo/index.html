@@ -3,7 +3,7 @@
   <head>
     <title>Cluedo Solver</title>
     <meta name="author" content="Paul Bond">
-    <meta name="description" content="A web application to help you keep track in Cluedo">
+    <meta name="description" content="Online app to replace the paper score card in Cluedo/Clue">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
+    <cs-nav></cs-nav>
     <div class="container">
       <ng-view></ng-view>
     </div>
@@ -26,5 +27,8 @@
     <script src="controllers/turns.js"></script>
     <script src="services/data.js"></script>
     <script src="services/logic.js"></script>
+    <script src="services/utils.js"></script>
+    <script src="directives/cs_nav.js"></script>
+    <script src="directives/a_disabled.js"></script>
   </body>
 </html>

@@ -12,7 +12,18 @@
     $scope.numPlayers = 6;
     $scope.cardSets = data.cardSets;
 
+    $scope.countCards = function() {
+      $scope.totalCards = 0;
+      for (var i in $scope.players) {
+        var player = $scope.players[i];
+        player.numCards = Math.floor(18 / $scope.numPlayers);
+        if (player.extraCard === true) player.numCards++;
+        $scope.totalCards += player.numCards;
+      }
+    }
+
     $scope.$watch('numPlayers', function(val) {
+      // Resize players array
       if (val < $scope.players.length) {
         $scope.players = $scope.players.slice(0, val);
       } else {
@@ -20,7 +31,29 @@
           $scope.players.push({});
         }
       }
+      // Reset info on extra cards
+      for (var i in $scope.players) {
+        $scope.players[i].extraCard = null;
+      }
+      // Recount each players cards
+      $scope.countCards();
     });
+
+    $scope.validCardTotal = function() {
+      return $scope.totalCards === 18;
+    }
+    
+    $scope.validHand = function() {
+      $scope.handCount = 0;
+      for (var i in $scope.cardSet.cards) {
+        if ($scope.cardSet.cards[i].inHand === true) $scope.handCount++;
+      }
+      return $scope.players[0].numCards === $scope.handCount;
+    }
+
+    $scope.customValid = function() {
+      return $scope.validCardTotal() && $scope.validHand();
+    }
 
     $scope.submit = function() {
       $localStorage.$reset();

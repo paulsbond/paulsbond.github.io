@@ -1,4 +1,8 @@
-<ng-include src="'partials/nav.html'"></ng-include>
+<h1>Turns</h1>
+
+<p ng-show="$store.turns.length === 0">
+  No turns added yet...
+</p>
 
 <fieldset ng-repeat="turn in $store.turns">
   <legend>Turn {{$index+1}} - {{turn.player}}</legend>

@@ -16,8 +16,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #333;
   text-align: center;
-  padding-top: 1.5em; 
-  padding-bottom: 1.5em; }
+  padding-top: 70px; 
+  padding-bottom: 20px; 
+  background-color: #f8f5ec; }
 
 
 /* Typography
@@ -35,6 +36,8 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
 p {
   margin-top: 0; }
+p.text {
+  text-align: left; }
 
 
 /* Container
@@ -58,6 +61,7 @@ p {
     width: 80%; }
 }
 
+
 /* Nav
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 nav {
@@ -66,21 +70,17 @@ nav {
   left: 0;
   border-bottom: 1px solid #bbb;
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   background-color: #fff;
-}
-.nav-spacer {
-  height: 4rem;
-}
+  z-index: 1; }
 .nav-icon {
   float: left;
   width: 25%;
-  line-height: 4rem;
-  font-size: 1.6rem;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-}
+  line-height: 5rem;
+  font-size: 3rem;
+  color: #333; }
+.nav-icon.disabled {
+  color: #999; }
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -88,7 +88,6 @@ nav {
   display: block;
   height: 3.8rem;
   padding: 0 30px;
-  color: #555;
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
@@ -97,14 +96,13 @@ nav {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: #fff;
   border-radius: 4px;
   border: 1px solid #bbb;
   box-sizing: border-box; 
   margin: 0 auto; }
 .btn:hover,
 .btn:focus {
-  color: #333;
   border-color: #888;
   outline: 0; }
 .btn[disabled] {
@@ -122,7 +120,8 @@ select,
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+  max-width: 100%; }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="text"] {
   -webkit-appearance: none;
@@ -133,8 +132,9 @@ select:focus {
   border: 1px solid #33C3F0;
   outline: 0; }
 input[type="text"][disabled] {
-  background-color: #ddd;
-}
+  background-color: #ddd; }
+input[type="text"].ng-invalid.ng-valid-required {
+  border: 1px solid #f00; }
 
 label {
   display: block;
@@ -155,7 +155,14 @@ label.radio-label {
 
 fieldset > legend {
   font-weight: 600;
-}
+  text-align: left; }
+
+p.help-text {
+  color: #888; }
+p.error {
+  margin-top: -1rem;
+  color: #f00; }
+
 
 /* Tables
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -166,14 +173,18 @@ td {
   border: 1px solid #bbb; }
 th {
   background-color: #ddd; }
+td {
+  background-color: #fff; }
+
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.btn {
+.btn,
+.check-group,
+fieldset > legend {
   margin-bottom: 1rem; }
 input,
 select,
-.check-group,
 P {
   margin-bottom: 1.5rem; }
 table,
@@ -194,4 +205,12 @@ fieldset {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 [ng-cloak] {
   display: none;
+}
+
+
+/* home.html
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.home-btns {
+  margin-bottom: 4rem;
 }

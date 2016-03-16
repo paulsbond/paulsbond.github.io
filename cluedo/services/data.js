@@ -1,7 +1,8 @@
 (function() {
   var app = angular.module('app');
   
-  app.factory('data', ['$http', function($http) {
+  app.factory('data',
+    ['$http', function($http) {
     
     var data = {};
     
