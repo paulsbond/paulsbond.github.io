@@ -9,8 +9,8 @@
       restrict: 'E',
       templateUrl: 'directives/cs_nav.html',
       scope: true,
-      link: function($scope,elem,attr){
-        $scope.dataExists = utils.dataExists;
+      link: function(scope, elem, attrs) {
+        scope.dataExists = utils.dataExists;
       }
     };
     

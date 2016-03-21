@@ -1,28 +1,26 @@
 (function(){
   var app = angular.module('app');
 
-    app.directive('aDisabled', function() {
-        return {
-            compile: function(tElement, tAttrs, transclude) {
-                //Disable ngClick
-                tAttrs["ngClick"] = "!("+tAttrs["aDisabled"]+") && ("+tAttrs["ngClick"]+")";
+  app.directive('aDisabled', function() {
+    return {
+      restrict: 'A',
+      link: function (scope, elem, attrs) {
 
-                //Toggle "disabled" to class when aDisabled becomes true
-                return function (scope, iElement, iAttrs) {
-                    scope.$watch(iAttrs["aDisabled"], function(newValue) {
-                        if (newValue !== undefined) {
-                            iElement.toggleClass("disabled", newValue);
-                        }
-                    });
+        //Toggle "disabled" to class when aDisabled becomes true
+        scope.$watch(attrs.aDisabled, function(val) {
+          if (val !== undefined) {
+            elem.toggleClass("disabled", val);
+          }
+        });
 
-                    //Disable href on click
-                    iElement.on("click", function(e) {
-                        if (scope.$eval(iAttrs["aDisabled"])) {
-                            e.preventDefault();
-                        }
-                    });
-                };
-            }
-        };
-    });
+        //Disable href on click
+        elem.on("click", function(e) {
+          if (scope.$eval(attrs.aDisabled)) {
+            e.preventDefault();
+          }
+        });
+
+      }
+    };
+  });
 })();

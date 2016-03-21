@@ -33,7 +33,7 @@
       }
       // Reset info on extra cards
       for (var i in $scope.players) {
-        $scope.players[i].extraCard = null;
+        $scope.players[i].extraCard = false;
       }
       // Recount each players cards
       $scope.countCards();
@@ -65,7 +65,7 @@
       
       for (var i in $localStorage.cards) {
         var card = $localStorage.cards[i];
-        var inHand = card.inHand === true;
+        var inHand = (card.inHand === true);
         logic.addDeduction($localStorage.players[0].name, card.name, inHand);
       }
       
