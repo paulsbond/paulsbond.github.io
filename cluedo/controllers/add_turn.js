@@ -26,6 +26,12 @@
     
     $scope.submit = function() {
       
+      $localStorage.previousState = {
+        turns: angular.copy($localStorage.turns),
+        deductions: angular.copy($localStorage.deductions),
+        possibilities: angular.copy($localStorage.possibilities)
+      };
+      
       // Only process other players who responded
       var validResponses = [];
       for (var response in $scope.responses) {

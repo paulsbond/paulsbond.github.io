@@ -1,4 +1,4 @@
-<h1>Game Setup</h1>
+<h2>Game Setup</h2>
 
 <form name="form" ng-submit="form.$valid && customValid() && submit()" novalidate>
 
@@ -48,7 +48,7 @@
     <div class="check-group">
       <label ng-repeat="player in players"
              ng-hide="player.name === undefined || player.name === ''">
-        <input type="checkbox" ng-model="player.extraCard"
+        <input type="checkbox" ng-model="player.hasExtraCard"
                ng-click="countCards()">
         <span class="label-body">{{player.name}}</span>
       </label>
@@ -65,7 +65,8 @@
     <label>Suspects</label>
     <div class="check-group">
       <label ng-repeat="card in cardSet.cards | filter : {group:'Suspect'}">
-        <input type="checkbox" ng-model="card.inHand">
+        <input type="checkbox" ng-model="card.inHand"
+               ng-init="card.inHand=false">
         <span class="label-body">{{card.name}}</span>
       </label>
     </div>
@@ -73,7 +74,8 @@
     <label>Weapons</label>
     <div class="check-group">
       <label ng-repeat="card in cardSet.cards | filter : {group:'Weapon'}">
-        <input type="checkbox" ng-model="card.inHand">
+        <input type="checkbox" ng-model="card.inHand"
+               ng-init="card.inHand=false">
         <span class="label-body">{{card.name}}</span>
       </label>
     </div>
@@ -81,7 +83,8 @@
     <label>Locations</label>
     <div class="check-group">
       <label ng-repeat="card in cardSet.cards | filter : {group:'Location'}">
-        <input type="checkbox" ng-model="card.inHand">
+        <input type="checkbox" ng-model="card.inHand"
+               ng-init="card.inHand=false">
         <span class="label-body">{{card.name}}</span>
       </label>
     </div>

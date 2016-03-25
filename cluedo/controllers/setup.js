@@ -17,7 +17,7 @@
       for (var i in $scope.players) {
         var player = $scope.players[i];
         player.numCards = Math.floor(18 / $scope.numPlayers);
-        if (player.extraCard === true) player.numCards++;
+        if (player.hasExtraCard) player.numCards++;
         $scope.totalCards += player.numCards;
       }
     }
@@ -33,7 +33,7 @@
       }
       // Reset info on extra cards
       for (var i in $scope.players) {
-        $scope.players[i].extraCard = false;
+        $scope.players[i].hasExtraCard = false;
       }
       // Recount each players cards
       $scope.countCards();
@@ -46,7 +46,7 @@
     $scope.validHand = function() {
       $scope.handCount = 0;
       for (var i in $scope.cardSet.cards) {
-        if ($scope.cardSet.cards[i].inHand === true) $scope.handCount++;
+        if ($scope.cardSet.cards[i].inHand) $scope.handCount++;
       }
       return $scope.players[0].numCards === $scope.handCount;
     }
@@ -65,8 +65,8 @@
       
       for (var i in $localStorage.cards) {
         var card = $localStorage.cards[i];
-        var inHand = (card.inHand === true);
-        logic.addDeduction($localStorage.players[0].name, card.name, inHand);
+        logic.addDeduction($localStorage.players[0].name,
+                           card.name, card.inHand);
       }
       
       $location.url('overview');

@@ -175,6 +175,14 @@ th {
   background-color: #ddd; }
 td {
   background-color: #fff; }
+tbody.owned td {
+  background-color: #eee; }
+tbody.owned td[colspan] {
+  text-decoration: line-through; }
+tbody.answer td {
+  background-color: #dfd; }
+tbody.answer td[colspan] {
+  font-weight: 600; }
 
 
 /* Spacing

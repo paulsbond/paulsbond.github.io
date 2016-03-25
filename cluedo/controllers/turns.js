@@ -16,11 +16,21 @@
           summary += " showed " + response.card;
         }
       } else if (response.showedCard === "false") {
-        summary += " could not show a card";
+        summary += " couldn't show a card";
       } else {
         summary += " did not respond";
       }
       return summary;
+    };
+    
+    $scope.undoTurn = function() {
+      if ($localStorage.previousState !== undefined &&
+          window.confirm("Undo last turn?")) {
+        $localStorage.turns = $localStorage.previousState.turns;
+        $localStorage.deductions = $localStorage.previousState.deductions;
+        $localStorage.possibilities = $localStorage.previousState.possibilities;
+        delete $localStorage.previousState;
+      }
     };
     
   }]);

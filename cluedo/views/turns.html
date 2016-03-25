@@ -1,4 +1,4 @@
-<h1>Turns</h1>
+<h2>Turns</h2>
 
 <p ng-show="$store.turns.length === 0">
   No turns added yet...
@@ -19,3 +19,7 @@
     <span ng-repeat="response in turn.responses">{{summary(response)}}<br/></span>
   </p>
 </fieldset>
+
+<p ng-hide="$store.previousState === undefined">
+  <button class="btn" ng-click="undoTurn()">Undo Last Turn</button>
+</p>

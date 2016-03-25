@@ -14,7 +14,7 @@
     $scope.continue = function() {
       if (utils.dataExists()) $location.url('overview');
     };
-    
+
     $scope.reset = function() {
       if (window.confirm("Clear all data?"))
       {
