@@ -1,6 +1,8 @@
 <h2>Add Turn</h2>
 
-<form name="addTurnForm" ng-submit="addTurnForm.$valid && submit()" novalidate>
+<form name="form" 
+      ng-submit="form.$valid && validResponses().length > 0 && submit()"
+      novalidate>
 
   <fieldset>
     <legend>Player</legend>
@@ -41,10 +43,14 @@
         <option>{{guess[2]}}</option>
       </select>
     </div>
+    <p class="error" ng-show="validResponses().length === 0">
+      At least one person must respond
+    </p>
   </fieldset>
-  
+
   <div>
-    <input type="submit" class="btn" value="Add Turn">
+    <input type="submit" class="btn" value="Add Turn"
+           ng-disabled="form.$invalid || validResponses().length === 0">
   </div>
-  
+
 </form>

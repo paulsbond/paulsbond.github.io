@@ -89,9 +89,13 @@
       </label>
     </div>
     
-    <p class="error" ng-show="!validHand()">
+    <p class="error" ng-show="!validHandCount()">
       There should be {{players[0].numCards}} cards in your hand<br>
       (currently {{handCount}})
+    </p>
+
+    <p class="error" ng-show="validHandCount() && !validHandCards()">
+      You can't have all the cards from one group in your hand
     </p>
   </fieldset>
 

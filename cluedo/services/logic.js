@@ -125,20 +125,23 @@
 
           for (var i in $localStorage.cards) {
             var card = $localStorage.cards[i];
-            if (card.group === group && card.name !== answer) {
-              var notKnownCount = 0;
-              var notKnownPlayer;
-              for (var j in $localStorage.players) {
-                var player = $localStorage.players[j];
-                if (this.hasCard(player.name, card.name) === null) {
-                  notKnownCount++;
-                  notKnownPlayer = player.name;
-                }
+
+            if (card.group !== group ||
+                card.name === answer ||
+                this.isOwned(card.name)) continue;
+
+            // If only one player without deduction then they must own
+            var notKnownCount = 0;
+            var notKnownPlayer;
+            for (var j in $localStorage.players) {
+              var player = $localStorage.players[j];
+              if (this.hasCard(player.name, card.name) === null) {
+                notKnownCount++;
+                notKnownPlayer = player.name;
               }
-              // If only one player without deduction then they must own
-              if (notKnownCount === 1) {
-                this.addDeduction(notKnownPlayer, card.name, true);
-              }
+            }
+            if (notKnownCount === 1) {
+              this.addDeduction(notKnownPlayer, card.name, true);
             }
           }
 

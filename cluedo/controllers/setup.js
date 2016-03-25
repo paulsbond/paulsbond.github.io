@@ -41,19 +41,35 @@
 
     $scope.validCardTotal = function() {
       return $scope.totalCards === 18;
-    }
-    
-    $scope.validHand = function() {
+    };
+
+    $scope.validHandCount = function() {
       $scope.handCount = 0;
       for (var i in $scope.cardSet.cards) {
         if ($scope.cardSet.cards[i].inHand) $scope.handCount++;
       }
       return $scope.players[0].numCards === $scope.handCount;
-    }
+    };
+
+    $scope.validHandCards = function() {
+      var freeSuspects = 0;
+      var freeWeapons = 0;
+      for (var i in $scope.cardSet.cards) {
+        var card = $scope.cardSet.cards[i];
+        if (! card.inHand) {
+          if (card.group === "Suspect") freeSuspects++;
+          if (card.group === "Weapon") freeWeapons++;
+          if (freeSuspects > 0 && freeWeapons > 0) return true;
+        }
+      }
+      return false;
+    };
 
     $scope.customValid = function() {
-      return $scope.validCardTotal() && $scope.validHand();
-    }
+      return $scope.validCardTotal() && 
+             $scope.validHandCount() &&
+             $scope.validHandCards();
+    };
 
     $scope.submit = function() {
       $localStorage.$reset();
