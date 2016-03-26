@@ -7,6 +7,47 @@
 
     var logic = {
 
+      hasFullHand: function(playerName, handCards) {
+        var handCount = 0;
+        // Add cards from deductions
+        for (var i in $localStorage.deductions) {
+          var deduction = $localStorage.deductions[i];
+          if (deduction.player === playerName && deduction.hasCard) {
+            handCount++;
+            handCards.push(deduction.card);
+          }
+        }
+        // Add cards from possibilities
+        for (var i in $localStorage.possibilities) {
+          var possibility = $localStorage.possibilities[i];
+          if (possibility.player === playerName) {
+            var unique = true;
+            for (var j in possibility.cards) {
+              var card = possibility.cards[j];
+              if (handCards.indexOf(card) === -1) {
+                handCards.push(card);
+              }
+              else {
+                unique = false;
+              }
+            }
+            if (unique) {
+              handCount++;
+            }
+          }
+        }
+        var player = this.getPlayer(playerName);
+        return handCount === player.numCards;
+      },
+
+      getPlayer: function(name) {
+        for (var i in $localStorage.players) {
+          var player = $localStorage.players[i];
+          if (player.name === name) return player;
+        }
+        return null;
+      },
+
       getAnswer: function(group) {
         for (var i in $localStorage.cards) {
           var card = $localStorage.cards[i];
@@ -70,31 +111,48 @@
         return true;
       },
 
-      addDeduction: function(player, card, hasCard) {
+      addDeduction: function(playerName, cardName, hasCard) {
 
-        if (this.deductionExists(player, card)) return;
+        if (this.deductionExists(playerName, cardName)) return;
 
         $localStorage.deductions.push({
-          player: player,
-          card: card,
+          player: playerName,
+          card: cardName,
           hasCard: hasCard
         });
 
-        this.updatePossibilities(player, card, hasCard);
+        this.updatePossibilities(playerName, cardName, hasCard);
 
         // If player has card, other players don't
         if (hasCard) {
           for (var i in $localStorage.players) {
             var other = $localStorage.players[i].name;
-            if (other !== player) {
-              this.addDeduction(other, card, false);
+            if (other !== playerName) {
+              this.addDeduction(other, cardName, false);
             }
           }
         }
 
         // Check if any more deductions can be made in the group
-        var group = this.getCardGroup(card);
+        var group = this.getCardGroup(cardName);
         this.checkGroup(group);
+
+        this.checkHand(playerName);
+
+      },
+
+      // Check if a players hand is full and rule out other cards
+      checkHand: function(playerName) {
+        if (playerName === $localStorage.players[0].name) return;
+        var handCards = [];
+        if (this.hasFullHand(playerName, handCards)) {
+          for (var i in $localStorage.cards) {
+            var card = $localStorage.cards[i];
+            if (handCards.indexOf(card.name) === -1) {
+              this.addDeduction(playerName, card.name, false);
+            }
+          }
+        }
       },
 
       checkGroup: function(group) {
@@ -197,6 +255,8 @@
           player: player,
           cards: cards
         });
+
+        this.checkHand(player);
 
       },
 
