@@ -3,14 +3,14 @@
 <table>
   <thead>
     <tr>
-      <th ng-repeat="player in $store.players">{{player.name}}</th>
+      <th ng-repeat="player in store.data.players">{{player.name}}</th>
     </tr>
   </thead>
-  <tbody ng-repeat="card in $store.cards | filter : {group:'Suspect'}"
+  <tbody ng-repeat="card in store.data.cards | filter : {group:'Suspect'}"
          ng-class="cardCategory(card)">
-    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr><td colspan="{{store.data.players.length}}">{{card.name}}</td></tr>
     <tr>
-      <td ng-repeat="player in $store.players">
+      <td ng-repeat="player in store.data.players">
         <span ng-class="icon(player, card)"></span>
       </td>
     </tr>
@@ -20,14 +20,14 @@
 <table>
   <thead>
     <tr>
-      <th ng-repeat="player in $store.players">{{player.name}}</th>
+      <th ng-repeat="player in store.data.players">{{player.name}}</th>
     </tr>
   </thead>
-  <tbody ng-repeat="card in $store.cards | filter : {group:'Weapon'}"
+  <tbody ng-repeat="card in store.data.cards | filter : {group:'Weapon'}"
          ng-class="cardCategory(card)">
-    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr><td colspan="{{store.data.players.length}}">{{card.name}}</td></tr>
     <tr>
-      <td ng-repeat="player in $store.players">
+      <td ng-repeat="player in store.data.players">
         <span ng-class="icon(player, card)"></span>
       </td>
     </tr>
@@ -37,14 +37,14 @@
 <table>
   <thead>
     <tr>
-      <th ng-repeat="player in $store.players">{{player.name}}</th>
+      <th ng-repeat="player in store.data.players">{{player.name}}</th>
     </tr>
   </thead>
-  <tbody ng-repeat="card in $store.cards | filter : {group:'Location'}"
+  <tbody ng-repeat="card in store.data.cards | filter : {group:'Location'}"
          ng-class="cardCategory(card)">
-    <tr><td colspan="{{$store.players.length}}">{{card.name}}</td></tr>
+    <tr><td colspan="{{store.data.players.length}}">{{card.name}}</td></tr>
     <tr>
-      <td ng-repeat="player in $store.players">
+      <td ng-repeat="player in store.data.players">
         <span ng-class="icon(player, card)"></span>
       </td>
     </tr>

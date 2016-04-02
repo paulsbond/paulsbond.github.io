@@ -1,12 +1,12 @@
 (function(){
   var app = angular.module('app');
-  
-  app.controller('SetupController',
-    ['$scope', '$location', '$localStorage', 'data', 'logic',
-    function($scope, $location, $localStorage, data, logic) {
 
-    $scope.$store = $localStorage;
-    
+  app.controller('SetupController',
+    ['$scope', '$location', 'store', 'data', 'logic',
+    function($scope, $location, store, data, logic) {
+
+    $scope.store = store;
+
     $scope.players = [];
     $scope.cardSet = data.cardSets[0];
     $scope.numPlayers = 6;
@@ -72,21 +72,15 @@
     };
 
     $scope.submit = function() {
-      $localStorage.$reset();
-      $localStorage.players = $scope.players;
-      $localStorage.cards = $scope.cardSet.cards;
-      $localStorage.turns = [];
-      $localStorage.deductions = [];
-      $localStorage.possibilities = [];
-      
-      for (var i in $localStorage.cards) {
-        var card = $localStorage.cards[i];
-        logic.addDeduction($localStorage.players[0].name,
-                           card.name, card.inHand);
+      store.setupNewGame($scope.players, $scope.cardSet.cards);
+
+      for (var i in store.data.cards) {
+        var card = store.data.cards[i];
+        logic.addDeduction(store.data.players[0].name, card.name, card.inHand);
       }
-      
+
       $location.url('overview');
     };
-    
+
   }]);
 })();

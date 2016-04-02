@@ -2,10 +2,10 @@
   var app = angular.module('app');
   
   app.controller('TurnsController',
-    ['$scope', '$location', '$localStorage',
-    function($scope, $location, $localStorage) {
+    ['$scope', '$location', 'store',
+    function($scope, $location, store) {
 
-    $scope.$store = $localStorage;
+    $scope.store = store;
 
     $scope.summary = function(response) {
       var summary = response.player;
@@ -24,12 +24,12 @@
     };
     
     $scope.undoTurn = function() {
-      if ($localStorage.previousState !== undefined &&
+      if (store.data.previousState !== undefined &&
           window.confirm("Undo last turn?")) {
-        $localStorage.turns = $localStorage.previousState.turns;
-        $localStorage.deductions = $localStorage.previousState.deductions;
-        $localStorage.possibilities = $localStorage.previousState.possibilities;
-        delete $localStorage.previousState;
+        store.data.turns = store.data.previousState.turns;
+        store.data.deductions = store.data.previousState.deductions;
+        store.data.possibilities = store.data.previousState.possibilities;
+        delete store.data.previousState;
       }
     };
     

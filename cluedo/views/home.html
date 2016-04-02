@@ -2,8 +2,8 @@
 
 <div class="home-btns">
     <button class="btn" ng-click="newGame()">New Game</button>
-    <button class="btn" ng-click="continue()" ng-disabled="!dataExists()">Continue</button>
-    <button class="btn" ng-click="reset()" ng-disabled="!dataExists()">Reset</button>
+    <button class="btn" ng-click="continue()" ng-disabled="!store.dataExists()">Continue</button>
+    <button class="btn" ng-click="reset()" ng-disabled="!store.dataExists()">Reset</button>
 </div>
 
 <p>

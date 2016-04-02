@@ -2,10 +2,10 @@
   var app = angular.module('app');
 
   app.controller('OverviewController', 
-  ['$scope', '$localStorage', 'logic',
-  function($scope, $localStorage, logic) {
+  ['$scope', 'store', 'logic',
+  function($scope, store, logic) {
 
-    $scope.$store = $localStorage;
+    $scope.store = store;
     $scope.logic = logic;
     
     $scope.cardCategory = function(card) {

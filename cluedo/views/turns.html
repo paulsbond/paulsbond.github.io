@@ -1,10 +1,10 @@
 <h2>Turns</h2>
 
-<p ng-show="$store.turns.length === 0">
+<p ng-show="store.data.turns.length === 0">
   No turns added yet...
 </p>
 
-<fieldset ng-repeat="turn in $store.turns">
+<fieldset ng-repeat="turn in store.data.turns">
   <legend>Turn {{$index+1}} - {{turn.player}}</legend>
 
   <label>Guess</label>
@@ -20,6 +20,6 @@
   </p>
 </fieldset>
 
-<p ng-hide="$store.previousState === undefined">
+<p ng-hide="store.data.previousState === undefined">
   <button class="btn" ng-click="undoTurn()">Undo Last Turn</button>
 </p>

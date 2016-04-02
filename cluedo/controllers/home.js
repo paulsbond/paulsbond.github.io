@@ -2,23 +2,23 @@
   var app = angular.module('app');
 
   app.controller('HomeController',
-    ['$scope', '$location', '$localStorage', 'utils',
-    function($scope, $location, $localStorage, utils) {
+    ['$scope', '$location', 'store',
+    function($scope, $location, store) {
 
-    $scope.dataExists = utils.dataExists;
+    $scope.store = store;
 
     $scope.newGame = function() {
       $location.url('setup');
     };
 
     $scope.continue = function() {
-      if (utils.dataExists()) $location.url('overview');
+      if (store.dataExists()) $location.url('overview');
     };
 
     $scope.reset = function() {
       if (window.confirm("Clear all data?"))
       {
-        if (utils.dataExists()) $localStorage.$reset();
+        if (store.dataExists()) store.data.$reset();
       }
     };
 

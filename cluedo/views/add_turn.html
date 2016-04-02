@@ -7,7 +7,7 @@
   <fieldset>
     <legend>Player</legend>
     <select ng-model="player" required>
-      <option ng-repeat="player in $store.players">{{player.name}}</option>
+      <option ng-repeat="player in store.data.players">{{player.name}}</option>
     </select>
   </fieldset>
 
@@ -15,15 +15,15 @@
     <legend>Guess</legend>
     <label>Suspect</label>
     <select ng-model="guess[0]" required>
-      <option ng-repeat="card in $store.cards | filter : {group:'Suspect'}">{{card.name}}</option>
+      <option ng-repeat="card in store.data.cards | filter : {group:'Suspect'}">{{card.name}}</option>
     </select>
     <label>Weapon</label>
     <select ng-model="guess[1]" required>
-      <option ng-repeat="card in $store.cards | filter : {group:'Weapon'}">{{card.name}}</option>
+      <option ng-repeat="card in store.data.cards | filter : {group:'Weapon'}">{{card.name}}</option>
     </select>
     <label>Location</label>
     <select ng-model="guess[2]" required>
-      <option ng-repeat="card in $store.cards | filter : {group:'Location'}">{{card.name}}</option>
+      <option ng-repeat="card in store.data.cards | filter : {group:'Location'}">{{card.name}}</option>
     </select>
   </fieldset>
 

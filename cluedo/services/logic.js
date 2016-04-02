@@ -2,24 +2,24 @@
   var app = angular.module('app');
 
   app.factory('logic', 
-    ['$localStorage', 
-    function($localStorage) {
+    ['store', 
+    function(store) {
 
     var logic = {
 
       hasFullHand: function(playerName, handCards) {
         var handCount = 0;
         // Add cards from deductions
-        for (var i in $localStorage.deductions) {
-          var deduction = $localStorage.deductions[i];
+        for (var i in store.data.deductions) {
+          var deduction = store.data.deductions[i];
           if (deduction.player === playerName && deduction.hasCard) {
             handCount++;
             handCards.push(deduction.card);
           }
         }
         // Add cards from possibilities
-        for (var i in $localStorage.possibilities) {
-          var possibility = $localStorage.possibilities[i];
+        for (var i in store.data.possibilities) {
+          var possibility = store.data.possibilities[i];
           if (possibility.player === playerName) {
             var unique = true;
             for (var j in possibility.cards) {
@@ -36,21 +36,13 @@
             }
           }
         }
-        var player = this.getPlayer(playerName);
+        var player = store.getPlayer(playerName);
         return handCount === player.numCards;
       },
 
-      getPlayer: function(name) {
-        for (var i in $localStorage.players) {
-          var player = $localStorage.players[i];
-          if (player.name === name) return player;
-        }
-        return null;
-      },
-
       getAnswer: function(group) {
-        for (var i in $localStorage.cards) {
-          var card = $localStorage.cards[i];
+        for (var i in store.data.cards) {
+          var card = store.data.cards[i];
           if (card.group === group && this.isAnswer(card.name)) {
             return card.name;
           }
@@ -58,54 +50,33 @@
         return null;
       },
 
-      getCardGroup: function(name) {
-        for (var i in $localStorage.cards) {
-          var card = $localStorage.cards[i];
-          if (card.name === name) return card.group;
-        }
-      },
-
-      getDeduction: function(player, card) {
-        for (var i in $localStorage.deductions) {
-          var deduction = $localStorage.deductions[i];
-          if (deduction.player === player && deduction.card === card) {
-            return deduction;
-          }
-        }
-        return null;
-      },
-
-      deductionExists: function(player, card) {
-        return this.getDeduction(player, card) !== null;
-      },
-
-      possibilityExists: function(player, card) {
-        for (var i in $localStorage.possibilities) {
-          var possibility = $localStorage.possibilities[i];
-          if (possibility.player === player &&
-              possibility.cards.indexOf(card) !== -1) return true;
+      possibilityExists: function(playerName, cardName) {
+        for (var i in store.data.possibilities) {
+          var possibility = store.data.possibilities[i];
+          if (possibility.player === playerName &&
+              possibility.cards.indexOf(cardName) !== -1) return true;
         }
         return false;
       },
 
-      hasCard: function(player, card) {
-        var deduction = this.getDeduction(player, card);
+      hasCard: function(playerName, cardName) {
+        var deduction = store.getDeduction(playerName, cardName);
         if (deduction === null) return null;
         return deduction.hasCard;
       },
 
-      isOwned: function(card) {
-        for (var i in $localStorage.players) {
-          var player = $localStorage.players[i].name;
-          if (this.hasCard(player, card)) return true;
+      isOwned: function(cardName) {
+        for (var i in store.data.players) {
+          var playerName = store.data.players[i].name;
+          if (this.hasCard(playerName, cardName)) return true;
         }
         return false;
       },
 
-      isAnswer: function(card) {
-        for (var i in $localStorage.players) {
-          var player = $localStorage.players[i].name;
-          var hasCard = this.hasCard(player, card);
+      isAnswer: function(cardName) {
+        for (var i in store.data.players) {
+          var playerName = store.data.players[i].name;
+          var hasCard = this.hasCard(playerName, cardName);
           if (hasCard !== false) return false;
         }
         return true;
@@ -113,9 +84,10 @@
 
       addDeduction: function(playerName, cardName, hasCard) {
 
-        if (this.deductionExists(playerName, cardName)) return;
+        // TODO: If deduction.hasCard === !hasCard turn is inconsistent
+        if (store.getDeduction(playerName, cardName) !== null) return;
 
-        $localStorage.deductions.push({
+        store.data.deductions.push({
           player: playerName,
           card: cardName,
           hasCard: hasCard
@@ -125,29 +97,29 @@
 
         // If player has card, other players don't
         if (hasCard) {
-          for (var i in $localStorage.players) {
-            var other = $localStorage.players[i].name;
-            if (other !== playerName) {
-              this.addDeduction(other, cardName, false);
+          for (var i in store.data.players) {
+            var player = store.data.players[i];
+            if (player.name !== playerName) {
+              this.addDeduction(player.name, cardName, false);
             }
           }
         }
 
         // Check if any more deductions can be made in the group
-        var group = this.getCardGroup(cardName);
-        this.checkGroup(group);
+        var card = store.getCard(cardName);
+        this.checkGroup(card.group);
 
         this.checkHand(playerName);
 
       },
 
-      // Check if a players hand is full and rule out other cards
+      // Check if a players hand is full and rule out other cards if so
       checkHand: function(playerName) {
-        if (playerName === $localStorage.players[0].name) return;
+        if (playerName === store.data.players[0].name) return;
         var handCards = [];
         if (this.hasFullHand(playerName, handCards)) {
-          for (var i in $localStorage.cards) {
-            var card = $localStorage.cards[i];
+          for (var i in store.data.cards) {
+            var card = store.data.cards[i];
             if (handCards.indexOf(card.name) === -1) {
               this.addDeduction(playerName, card.name, false);
             }
@@ -163,16 +135,16 @@
           // If only one not owned then it is the answer
           var notOwnedCount = 0;
           var notOwnedCard;
-          for (var i in $localStorage.cards) {
-            var card = $localStorage.cards[i];
+          for (var i in store.data.cards) {
+            var card = store.data.cards[i];
             if (card.group === group && ! this.isOwned(card.name)) {
               notOwnedCount++;
               notOwnedCard = card.name;
             }
           }
           if (notOwnedCount === 1) {
-            for (var i in $localStorage.players) {
-              var playerName = $localStorage.players[i].name;
+            for (var i in store.data.players) {
+              var playerName = store.data.players[i].name;
               this.addDeduction(playerName, notOwnedCard, false);
             }
           }
@@ -181,8 +153,8 @@
         // If answer is known then other cards in group must be owned
         else {
 
-          for (var i in $localStorage.cards) {
-            var card = $localStorage.cards[i];
+          for (var i in store.data.cards) {
+            var card = store.data.cards[i];
 
             if (card.group !== group ||
                 card.name === answer ||
@@ -191,8 +163,8 @@
             // If only one player without deduction then they must own
             var notKnownCount = 0;
             var notKnownPlayer;
-            for (var j in $localStorage.players) {
-              var player = $localStorage.players[j];
+            for (var j in store.data.players) {
+              var player = store.data.players[j];
               if (this.hasCard(player.name, card.name) === null) {
                 notKnownCount++;
                 notKnownPlayer = player.name;
@@ -224,8 +196,8 @@
           return;
         }
 
-        for (var i in $localStorage.possibilities) {
-          var possibility = $localStorage.possibilities[i];
+        for (var i in store.data.possibilities) {
+          var possibility = store.data.possibilities[i];
           if (player !== possibility.player) continue;
 
           // Check if possibility is covered
@@ -246,12 +218,12 @@
         }
 
         // Remove old possibilities
-        $localStorage.possibilities = $localStorage.possibilities
+        store.data.possibilities = store.data.possibilities
           .filter(function(item) {
             return !item.old;
         });
 
-        $localStorage.possibilities.push({
+        store.data.possibilities.push({
           player: player,
           cards: cards
         });
@@ -262,7 +234,7 @@
 
       addTurn: function(player, guess, responses) {
 
-        $localStorage.turns.push({
+        store.data.turns.push({
           player: player,
           guess: guess,
           responses: responses
@@ -291,11 +263,11 @@
       },
 
       updatePossibilities: function(player, card, hasCard) {
-        for (var i in $localStorage.possibilities) {
-          var possibility = $localStorage.possibilities[i];
+        for (var i in store.data.possibilities) {
+          var possibility = store.data.possibilities[i];
           if (player !== possibility.player) continue;
           if (possibility.cards.indexOf(card) === -1) continue;
-          $localStorage.possibilities.splice(i, 1);
+          store.data.possibilities.splice(i, 1);
           if (!hasCard) {
             var cards = possibility.cards;
             for (var j in cards) {

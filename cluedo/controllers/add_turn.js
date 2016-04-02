@@ -2,23 +2,23 @@
   var app = angular.module('app');
 
   app.controller('AddTurnController', 
-    ['$scope', '$location', '$filter', '$localStorage', 'logic',
-    function($scope, $location, $filter, $localStorage, logic) {
+    ['$scope', '$location', '$filter', 'store', 'logic',
+    function($scope, $location, $filter, store, logic) {
 
-    $scope.$store = $localStorage;
+    $scope.store = store;
 
-    $scope.player = $localStorage.players[0].name;
+    $scope.player = store.data.players[0].name;
 
     $scope.guess = [
-      $filter('filter')($localStorage.cards,{group:"Suspect"})[0].name,
-      $filter('filter')($localStorage.cards,{group:"Weapon"})[0].name,
-      $filter('filter')($localStorage.cards,{group:"Location"})[0].name
+      $filter('filter')(store.data.cards,{group:"Suspect"})[0].name,
+      $filter('filter')(store.data.cards,{group:"Weapon"})[0].name,
+      $filter('filter')(store.data.cards,{group:"Location"})[0].name
     ];
 
     $scope.responses = [];
-    for (var i in $localStorage.players) {
+    for (var i in store.data.players) {
       $scope.responses.push({
-        player: $localStorage.players[i].name,
+        player: store.data.players[i].name,
         showedCard: "null",
         card: "null"
       });
@@ -38,10 +38,10 @@
 
     $scope.submit = function() {
 
-      $localStorage.previousState = {
-        turns: angular.copy($localStorage.turns),
-        deductions: angular.copy($localStorage.deductions),
-        possibilities: angular.copy($localStorage.possibilities)
+      store.data.previousState = {
+        turns: angular.copy(store.data.turns),
+        deductions: angular.copy(store.data.deductions),
+        possibilities: angular.copy(store.data.possibilities)
       };
 
       logic.addTurn($scope.player, $scope.guess, $scope.validResponses());
