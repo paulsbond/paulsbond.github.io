@@ -3,6 +3,14 @@
 }
 
 html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+header {
   background-image: url('images/fountains.jpg');
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -10,64 +18,43 @@ html {
   height: 100%;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  text-align: center;
+.overlay {
   height: 100%;
-}
-
-header {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,0.5);
-  color: #fff;
-}
-
-.intro {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-h1 {
-  font-size: 60px;
-}
-
-header img {
-  position: absolute;
-  bottom: 20px;
-  width: 30px;
-  margin-left: -15px;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .projects {
-  background-color: #fff;
-  color: #333;
+  background-image: url('images/dark_wood.png');
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
-h2 {
+.projects h2 {
+  background-color: rgba(0,0,0,0.4);
   font-size: 30px;
-  border-bottom:  1px solid #ccc;
+  line-height: 50px;
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 
 .project {
   display: inline-block;
-  padding: 10px;
-  width: 150px;
-  border: 1px solid #ccc;
-  margin: 20px 10px;
+  box-sizing: border-box;
+  width: 120px;
+  margin: 10px;
 }
 
 .project a {
-  font-weight: bold;
   text-decoration: none;
   color: inherit;
+  font-size: 16px;
 }
 
 .project img {
   display: block;
   width: 120px;
   height: 120px;
-  margin: 10px auto;
+  margin-bottom: 5px;
 }
