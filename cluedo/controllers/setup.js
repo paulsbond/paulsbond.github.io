@@ -2,8 +2,8 @@
   var app = angular.module('app');
 
   app.controller('SetupController',
-    ['$scope', '$location', 'store', 'data', 'logic',
-    function($scope, $location, store, data, logic) {
+    ['$scope', '$location', 'store', 'utils', 'data', 'logic',
+    function($scope, $location, store, utils, data, logic) {
 
     $scope.store = store;
 
@@ -65,18 +65,30 @@
       return false;
     };
 
+    $scope.validInitials = function() {
+      checked = [];
+      for (var i = 0; i < $scope.players.length; i++) {
+        var name = $scope.players[i].name;
+        if (name === undefined || name === "") continue;
+        if (checked.indexOf(name) !== -1) return false;
+        checked.push(name);
+      }
+      return true;
+    };
+
     $scope.customValid = function() {
       return $scope.validCardTotal() && 
              $scope.validHandCount() &&
-             $scope.validHandCards();
+             $scope.validHandCards() &&
+             $scope.validInitials();
     };
 
     $scope.submit = function() {
-      store.setupNewGame($scope.players, $scope.cardSet.cards);
+      utils.setupNewGame($scope.players, $scope.cardSet.cards);
 
-      for (var i in store.data.cards) {
-        var card = store.data.cards[i];
-        logic.addDeduction(store.data.players[0].name, card.name, card.inHand);
+      for (var i in store.cards) {
+        var card = store.cards[i];
+        logic.addDeduction(store.players[0].name, card.name, card.inHand);
       }
 
       $location.url('overview');

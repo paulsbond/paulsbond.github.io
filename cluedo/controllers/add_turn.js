@@ -2,49 +2,83 @@
   var app = angular.module('app');
 
   app.controller('AddTurnController', 
-    ['$scope', '$location', '$filter', 'store', 'logic',
-    function($scope, $location, $filter, store, logic) {
+    ['$scope', '$location', '$filter', 'store', 'logic', 'utils',
+    function($scope, $location, $filter, store, logic, utils) {
 
     $scope.store = store;
 
-    $scope.player = store.data.players[0].name;
-
-    $scope.guess = [
-      $filter('filter')(store.data.cards,{group:"Suspect"})[0].name,
-      $filter('filter')(store.data.cards,{group:"Weapon"})[0].name,
-      $filter('filter')(store.data.cards,{group:"Location"})[0].name
-    ];
-
-    $scope.responses = [];
-    for (var i in store.data.players) {
-      $scope.responses.push({
-        player: store.data.players[i].name,
-        showedCard: "null",
-        card: "null"
-      });
-    }
-
-    $scope.validResponses = function() {
-      var validResponses = [];
-      for (var i in $scope.responses) {
-        response = $scope.responses[i];
-        if (response.player !== $scope.player &&
-            response.showedCard !== "null") {
-          validResponses.push(response);
+    var initResponses = function() {
+      var i = utils.getPlayerIndex(store.turn.player);
+      var newResponses = [];
+      var numPlayers = store.players.length;
+      while (newResponses.length < numPlayers - 1) {
+        i++;
+        if (i === numPlayers) i = 0;
+        newResponses.push({
+          player: store.players[i].name,
+          type: "null"
+        });
+      }
+      if (store.turn.responses !== undefined) {
+        for (var i=0; i<store.turn.responses.length; i++) {
+          newResponses[i].type = store.turn.responses[i].type;
         }
       }
-      return validResponses;
+      store.turn.responses = newResponses;
+    };
+
+    var processResponse = function(r) {
+      var suspect = store.turn.suspect;
+      var weapon = store.turn.weapon;
+      var location = store.turn.location;
+      switch (r.type) {
+        case "hasNone":
+          logic.addDeduction(r.player, suspect, false);
+          logic.addDeduction(r.player, weapon, false);
+          logic.addDeduction(r.player, location, false);
+          break;
+        case "hasUnknown":
+          logic.addPossibility(r.player, [suspect, weapon, location]);
+          break;
+        case "hasSuspect":
+          logic.addDeduction(r.player, suspect, true);
+          break;
+        case "hasWeapon":
+          logic.addDeduction(r.player, weapon, true);
+          break;
+        case "hasLocation":
+          logic.addDeduction(r.player, location, true);
+          break;
+      }
+    };
+
+    $scope.$watch('store.turn.player', function() {
+      initResponses();
+    });
+
+    $scope.someoneResponded = function() {
+      for (var i=0; i<store.turn.responses.length; i++) {
+        if (store.turn.responses[i].type !== "null") return true;
+      }
+      return false
     };
 
     $scope.submit = function() {
 
-      store.data.previousState = {
-        turns: angular.copy(store.data.turns),
-        deductions: angular.copy(store.data.deductions),
-        possibilities: angular.copy(store.data.possibilities)
+      store.previousState = {
+        turns: angular.copy(store.turns),
+        deductions: angular.copy(store.deductions),
+        possibilities: angular.copy(store.possibilities)
       };
 
-      logic.addTurn($scope.player, $scope.guess, $scope.validResponses());
+      store.turns.push(store.turn);
+
+      for (var i in store.turn.responses) {
+        processResponse(store.turn.responses[i]);
+      }
+
+      store.turn = utils.getNextTurn();
+
       $location.url('overview');
     };
 

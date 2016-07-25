@@ -86,7 +86,6 @@ nav {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .btn {
   display: block;
-  height: 3.8rem;
   padding: 0 30px;
   text-align: center;
   font-size: 1.1rem;
@@ -212,13 +211,27 @@ fieldset {
 /* AngularJS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 [ng-cloak] {
-  display: none;
-}
+  display: none; }
 
 
 /* home.html
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .home-btns {
-  margin-bottom: 4rem;
-}
+  margin-bottom: 4rem; }
+
+/* turns.html
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.turn {
+  border: 1px solid #bbb;
+  margin-bottom: 20px; }
+
+.turn h3 {
+  font-size: 2rem;
+  margin: 0;
+  background-color: #bbb;
+  padding: 0.2rem; }
+
+.turn .detail {
+  padding-top: 15px; }

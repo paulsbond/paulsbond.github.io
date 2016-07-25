@@ -38,6 +38,9 @@
         Maximum of 3 letters
       </p>
     </div>
+    <p class="error" ng-show="!validInitials()">
+        Player initials must be unique
+      </p>
   </fieldset>
 
   <fieldset ng-show="numPlayers === 4 || numPlayers === 5">

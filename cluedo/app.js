@@ -6,23 +6,23 @@
     $routeProvider
       .when('/', {
         controller: 'HomeController',
-        templateUrl: 'views/home.html'
+        templateUrl: 'templates/home.html'
       })
       .when('/addturn', {
         controller: 'AddTurnController',
-        templateUrl: 'views/add_turn.html'
+        templateUrl: 'templates/add_turn.html'
       })
       .when('/overview', {
         controller: 'OverviewController',
-        templateUrl: 'views/overview.html'
+        templateUrl: 'templates/overview.html'
       })
       .when('/setup', {
         controller: 'SetupController',
-        templateUrl: 'views/setup.html'
+        templateUrl: 'templates/setup.html'
       })
       .when('/turns', {
         controller: 'TurnsController',
-        templateUrl: 'views/turns.html'
+        templateUrl: 'templates/turns.html'
       })
       .otherwise({redirectTo:'/'});
 

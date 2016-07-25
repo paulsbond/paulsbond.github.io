@@ -7,31 +7,33 @@
 
     $scope.store = store;
 
-    $scope.summary = function(response) {
-      var summary = response.player;
-      if (response.showedCard === "true") {
-        if (response.card === "null") {
-          summary += " showed an unknown card";
-        } else {
-          summary += " showed " + response.card;
-        }
-      } else if (response.showedCard === "false") {
-        summary += " couldn't show a card";
-      } else {
-        summary += " did not respond";
+    $scope.summary = function(turn, index) {
+      var r = turn.responses[index];
+      switch (r.type) {
+        case "hasNone":
+          return r.player + " couldn't show a card";
+        case "hasUnknown":
+          return r.player + " showed an unknown card";
+        case "hasSuspect":
+          return r.player + " showed " + turn.suspect;
+        case "hasWeapon":
+          return r.player + " showed " + turn.weapon;
+        case "hasLocation":
+          return r.player + " showed " + turn.location;
+        default:
+          return r.player + " didn't respond";
       }
-      return summary;
     };
-    
+
     $scope.undoTurn = function() {
-      if (store.data.previousState !== undefined &&
+      if (store.previousState !== undefined &&
           window.confirm("Undo last turn?")) {
-        store.data.turns = store.data.previousState.turns;
-        store.data.deductions = store.data.previousState.deductions;
-        store.data.possibilities = store.data.previousState.possibilities;
-        delete store.data.previousState;
+        store.turns = store.previousState.turns;
+        store.deductions = store.previousState.deductions;
+        store.possibilities = store.previousState.possibilities;
+        delete store.previousState;
       }
     };
-    
+
   }]);
 })();
