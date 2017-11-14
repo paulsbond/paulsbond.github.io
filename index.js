@@ -1,7 +1,7 @@
 bg = document.getElementById("background");
 
 function resizeBackgroud() {
-  bg.style.height = window.screen.height + "px";
+  bg.style.height = document.documentElement.clientHeight + "px";
 }
 
 window.addEventListener("resize", resizeBackgroud);
