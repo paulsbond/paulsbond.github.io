@@ -28,6 +28,7 @@ body {
 
 a {
   color: inherit;
+  outline: 0;
   text-decoration: none; }
 
 section {
