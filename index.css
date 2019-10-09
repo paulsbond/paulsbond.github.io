@@ -99,6 +99,9 @@ header:after {
 .project.goevolve .button {
   background-color: #aac9da; }
 
+.project.cootworkshop .button {
+    background-color: #56b1b4; }
+
 .project img {
   display: block;
   object-fit: contain;
