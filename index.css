@@ -88,6 +88,9 @@ header:after {
 .project .button {
   border-radius: 60px; }
 
+.project.modelcraft .button {
+  background-color: #b0e0b2; }
+
 .project.colorevolution .button {
   background-color: #f1e8b9; }
 
