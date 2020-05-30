@@ -104,7 +104,10 @@ header:after {
   background-color: #aac9da; }
 
 .project.cootworkshop .button {
-    background-color: #56b1b4; }
+  background-color: #56b1b4; }
+
+.project.focus .button {
+  background-color: #b91d47; }
 
 .project img {
   display: block;
