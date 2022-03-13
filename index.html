@@ -1,64 +1,93 @@
 <!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="author" content="Paul Bond" />
+<meta name="description" content="The homepage of Paul Bond, an old tree and some projects" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>paulsbond.co.uk</title>
-<meta charset="utf-8">
-<meta name="author" content="Paul Bond">
-<meta name="description" content="Paul Bond's homepage, an old tree and a list of projects">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" />
+<link rel="stylesheet" href="index.css" />
 
-<div id="background"></div>
+<div class="background"></div>
 
-<header>
-  <section class="icons">
-    <a href="mailto:info@paulsbond.co.uk"><img src="images/icon-gmail.svg"></a>
-    <a href="https://github.com/paulsbond"><img src="images/icon-github.svg"></a>
-    <a href="https://twitter.com/proteinbond"><img src="images/twitter.svg"></a>
-    <a href="https://linkedin.com/in/paulsbond"><img src="images/icon-in.svg"></a>
-    <a href="https://scholar.google.com/citations?user=v2VjsNkAAAAJ"><img src="images/icon-scholar.svg"></a>
-    <a href="https://www.buymeacoffee.com/paulsbond"><img src="images/icon-buymeacoffee.svg"></a>
-  </section>
-</header>
+<div class="icons">
+    <a href="mailto:info@paulsbond.co.uk">
+        <img src="images/icon-gmail.svg" />
+    </a>
+    <a href="https://github.com/paulsbond">
+        <img src="images/icon-github.svg" />
+    </a>
+    <a href="https://twitter.com/proteinbond">
+        <img src="images/twitter.svg" />
+    </a>
+    <a href="https://scholar.google.com/citations?user=v2VjsNkAAAAJ">
+        <img src="images/icon-scholar.svg" />
+    </a>
+    <a href="https://www.buymeacoffee.com/paulsbond">
+        <img src="images/icon-buymeacoffee.svg" />
+    </a>
+</div>
 
-<section class="hero">
-  <div>
-    <h1>Hi.</h1>
-    <p>Welcome to my page.</p>
-    <p>It has some projects I've been working on.</p>
-    <p>Hope you find something interesting.</p>
-  </div>
-</section>
-
-<section class="projects">
-  <h2>Projects</h2>
-  <div class="project modelcraft">
-    <div class="button"><a href="modelcraft"><img src="images/modelcraft.png"></a></div>
-    <a href="modelcraft">ModelCraft</a>
-  </div>
-  <div class="project jtsa">
-    <div class="button"><a href="jtsa"><img src="images/protein.png"></a></div>
-    <a href="jtsa">JTSA</a>
-  </div>
-  <div class="project cootworkshop">
-    <div class="button"><a href="coot-workshop"><img src="images/coot.png"></a></div>
-    <a href="coot-workshop">Coot Workshop</a>
-  </div>
-  <div class="project focus">
-    <div class="button"><a href="focus"><img src="images/focus.svg"></a></div>
-    <a href="focus">Focus</a>
-  </div>
-  <div class="project colorevolution">
-    <div class="button"><a href="colourevolution"><img src="images/dna.png"></a></div>
-    <a href="colourevolution">Colour Evolution</a>
-  </div>
-  <div class="project cluedosolver">
-    <div class="button"><a href="cluedosolver"><img src="images/mystery.png"></a></div>
-    <a href="cluedosolver">Cluedo Solver</a>
-  </div>
-  <div class="project goevolve">
-    <div class="button"><a href="goevolve"><img src="images/pidgey.png"></a></div>
-    <a href="goevolve">Go Evolve</a>
-  </div>
-</section>
-
-<script src="index.js"></script>
+<div class="projects">
+    <a href="modelcraft">
+        <div style="background-color: rgba(226, 240, 203, 0.6);">
+            <img src="images/modelcraft.png" />
+        </div>
+        <h3>ModelCraft</h3>
+        <p>
+            An automated model-building pipeline
+            for X-ray crystallography and cryo-EM
+        </p>
+    </a>
+    <a href="jtsa">
+        <div style="background-color: rgba(255, 183, 178, 0.6);">
+            <img src="images/protein.png" />
+        </div>
+        <h3>JTSA</h3>
+        <p>JavaScript Thermal Shift Analysis</p>
+        <p>
+            Interactively analyse thermofluor (DSF) data
+            by fitting sigmoid curves
+        </p>
+    </a>
+    <a href="coot-workshop">
+        <div style="background-color: rgba(199, 206, 234, 0.6);">
+            <img src="images/coot.png" />
+        </div>
+        <h3>Coot Workshop</h3>
+        <p>
+            A two-part workshop to introduce
+            interactive model building in Coot
+        </p>
+    </a>
+    <a href="focus">
+        <div style="background-color: rgba(255, 154, 162, 0.6);">
+            <img src="images/focus.svg" />
+        </div>
+        <h3>Focus</h3>
+        <p>
+            A simple Pomodoro timer
+            to help focus on tasks
+            for 25 minute periods
+        </p>
+    </a>
+    <a href="colorevolution">
+        <div style="background-color: rgba(255, 218, 193, 0.6);">
+            <img src="images/dna.png" />
+        </div>
+        <h3>Colour Evolution</h3>
+        <p>
+            An introduction to evolutionary algorithms
+            using an evolving grid of random colours
+        </p>
+    </a>
+    <a href="cluedosolver">
+        <div style="background-color: rgba(181, 234, 215, 0.6);">
+            <img src="images/mystery.png" />
+        </div>
+        <h3>Cluedo Solver</h3>
+        <p>
+            An alternative to using a pen and paper in Cluedo
+            to work out who did it, with what and where
+        </p>
+    </a>
+</div>

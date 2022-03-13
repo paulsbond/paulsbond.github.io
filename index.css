@@ -1,117 +1,93 @@
 ﻿* {
   box-sizing: border-box;
-  margin: 0; }
+  margin: 0;
+  padding: 0;
+}
 
 html {
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  padding: 20px;
-  text-align: center; }
+  font-weight: bold;
+  height: 100%;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
 
 body {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 800px; }
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-height: 100%;
+  padding: 30px;
+}
 
-#background {
-  background-image: url('images/fountains.jpg');
+.background {
+  background-image: url("images/fountains.jpg");
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
   height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: -1;
 }
 
 a {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
   color: inherit;
   outline: 0;
-  text-decoration: none; }
-
-section {
-  background-color: rgba(0,0,0,0.6);
-  margin-bottom: 20px; }
+  text-decoration: none;
+}
 
 .icons {
-  float: right;
-  font-size: 0; }
+  display: flex;
+  gap: 5px;
+}
 
-header:after {
-  content: ".";
-  visibility: hidden;
+.icons img {
   display: block;
-  height: 0;
-  clear: both; }
-
-.icons a {
-  display: inline-block; }
-
-.icons a img {
+  height: 35px;
   margin: 8px;
-  width: 35px; }
-
-.hero {
-  height: 400px;
-  padding: 30px; }
-
-.hero div {
-  margin: auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%); }
-
-.hero h1 {
-  font-size: 50px;
-  font-weight: normal;
-  margin-bottom: 20px; }
-
-.hero p {
-  font-size: 20px; }
+  width: 35px;
+}
 
 .projects {
-  padding-bottom: 10px; }
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 30px;
+  justify-content: center;
+  max-width: 1100px;
+}
 
-.projects h2 {
-  font-size: 30px;
-  line-height: 50px;
-  font-weight: normal;
-  margin-bottom: 10px; }
+.projects a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  text-shadow: 0rem 0rem 1rem #000;
+  width: 340px;
+}
 
-.project {
-  display: inline-block;
-  width: 120px;
-  margin: 10px; }
+.projects div {
+  border-radius: 50%;
+}
 
-.project .button {
-  border-radius: 60px; }
-
-.project.modelcraft .button {
-  background-color: #b0e0b2; }
-
-.project.colorevolution .button {
-  background-color: #f1e8b9; }
-
-.project.cluedosolver .button {
-  background-color: #82be92; }
-
-.project.jtsa .button {
-  background-color: #dbb492; }
-
-.project.goevolve .button {
-  background-color: #aac9da; }
-
-.project.cootworkshop .button {
-  background-color: #56b1b4; }
-
-.project.focus .button {
-  background-color: #b91d47; }
-
-.project img {
-  display: block;
+.projects img {
+  height: 320px;
   object-fit: contain;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 5px; }
+  width: 320px;
+}
