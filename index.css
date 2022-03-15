@@ -91,3 +91,7 @@ a {
   object-fit: contain;
   width: 320px;
 }
+
+footer {
+  font-family: "Courier New", Courier, monospace;
+}
