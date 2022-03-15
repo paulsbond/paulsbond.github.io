@@ -30,7 +30,7 @@ body {
   padding: 30px;
 }
 
-.background {
+#background {
   background-image: url("images/fountains.jpg");
   background-position: left bottom;
   background-repeat: no-repeat;
