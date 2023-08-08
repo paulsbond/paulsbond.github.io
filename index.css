@@ -11,13 +11,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
   padding: 20px 0;
 }
 
 .links {
   display: flex;
   gap: 5px;
-  margin-bottom: 20px;
 }
 
 .links a {
@@ -32,7 +32,7 @@ body {
   margin: 8px;
 }
 
-.picture {
+.banner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,25 +41,20 @@ body {
   background-position: bottom left;
   width: 100%;
   max-width: 800px;
-  margin-bottom: 10px;
 }
 
-.picture img {
+.banner img {
   display: block;
   margin: 10px;
   width: 200px;
   border-radius: 50%;
 }
 
-header {
-  margin-bottom: 20px;
-}
-
-.affiliation {
+header .affiliation {
   color: #767676;
 }
 
-.interests {
+header .interests {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -67,25 +62,33 @@ header {
   margin: 10px 20px 0 20px;
 }
 
-.interests span {
+header .interests span {
   background-color: #0726;
   border-radius: 1mm;
   display: inline-block;
   padding: 0.3rem 0.8rem;
 }
 
-section {
-  align-self: stretch;
-  padding: 20px;
-}
-
-section:nth-child(even) {
-  background-color: #0513;
-}
-
 h2 {
-  margin-top: -0.2rem;
-  margin-bottom: 20px;
+  width: 100%;
+  background-color: #0513;
+  padding: 5px;
+}
+
+section {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.image {
+  flex: none;
+  border-radius: 50%;
+}
+
+.image>img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .projects {
@@ -96,7 +99,6 @@ h2 {
 }
 
 .projects a {
-  background-color: #fff;
   color: inherit;
   text-decoration: none;
   border-radius: 15px;
@@ -109,16 +111,30 @@ h2 {
   width: 240px;
 }
 
-.projects a div {
+.projects .image {
   height: 120px;
   width: 120px;
-  border-radius: 50%;
 }
 
-.projects a img {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
+.workshops {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+}
+
+.workshops>div {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.workshops .image {
+  height: 80px;
+  width: 80px;
 }
 
 .publications {
@@ -130,8 +146,19 @@ h2 {
   gap: 20px;
 }
 
-.publications p {
+.publications svg {
+  height: 30px;
+}
+
+.publications>p {
   text-align: left;
   border-left: 2px solid #0726;
   padding-left: 10px;
+}
+
+.publications .scholar {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
