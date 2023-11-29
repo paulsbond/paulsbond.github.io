@@ -12,7 +12,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px 0;
+  padding: 20px 0 40px 0;
 }
 
 .links {
@@ -116,7 +116,9 @@ section {
   width: 120px;
 }
 
-.workshops {
+.workshops,
+.publications,
+.presentations {
   width: fit-content;
   margin: auto;
   display: flex;
@@ -137,28 +139,19 @@ section {
   width: 80px;
 }
 
-.publications {
-  width: fit-content;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.publications svg {
-  height: 30px;
-}
-
-.publications>p {
-  text-align: left;
+.publications>p,
+.presentations>p {
   border-left: 2px solid #0726;
   padding-left: 10px;
 }
 
-.publications .scholar {
+.scholar {
   align-self: center;
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.scholar svg {
+  height: 30px;
 }
