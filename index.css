@@ -145,6 +145,10 @@ section {
   padding-left: 10px;
 }
 
+.presentations {
+  max-width: 700px;
+}
+
 .scholar {
   align-self: center;
   display: flex;
