@@ -1,0 +1,31 @@
+{
+  "name": "paulsbond.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite --open",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "material-symbols": "^0.29.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router": "^7.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "prettier": "^3.7.3",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.0.14",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  }
+}
