@@ -1,25 +1,18 @@
 import { useState } from "react";
 import { lastUpdated, papers, type Paper } from "../papers";
 
-function formatdate(date: string) {
-  const [year, month, day] = date.split("-").map(Number);
-
-  if (!month) {
-    return String(year);
-  }
-
-  const monthName = new Intl.DateTimeFormat("en-GB", { month: "short" }).format(
-    new Date(Date.UTC(year, month - 1)),
-  );
-
-  return day ? `${day} ${monthName} ${year}` : `${monthName} ${year}`;
-}
+const dateFormat = new Intl.DateTimeFormat("en-GB", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 function calculateMetrics(publications: Paper[]) {
-  const citations = publications.map((p) => p.citations).sort((a, b) => b - a);
-
+  const citations = publications
+    .map((paper) => paper.citations)
+    .sort((first, second) => second - first);
   return {
-    totalCitations: citations.reduce((total, count) => total + count, 0),
+    citations: citations.reduce((total, count) => total + count, 0),
     hIndex: citations.filter((count, index) => count >= index + 1).length,
     i10Index: citations.filter((count) => count >= 10).length,
   };
@@ -28,8 +21,8 @@ function calculateMetrics(publications: Paper[]) {
 function Metric({ label, value }: { label: string; value: number }) {
   return (
     <div className="border-border bg-bg rounded-lg border px-4 py-3 text-center">
-      <dt className="text-secondary text-xs font-medium">{label}</dt>
-      <dd className="text-dark-sage mt-1 text-2xl font-semibold">
+      <dt className="text-secondary text-xs">{label}</dt>
+      <dd className="text-dark-sage mt-1 text-2xl font-bold">
         {value.toLocaleString()}
       </dd>
     </div>
@@ -46,12 +39,12 @@ export function Publications() {
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <h1 className="mt-1 text-3xl font-semibold sm:text-4xl">Publications</h1>
+      <h1 className="mt-1 text-3xl font-bold sm:text-4xl">Publications</h1>
 
       <section className="py-7" aria-label="Publication metrics">
         <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
           <Metric label="Total publications" value={papers.length} />
-          <Metric label="Citations" value={metrics.totalCitations} />
+          <Metric label="Citations" value={metrics.citations} />
           <Metric label="h-index" value={metrics.hIndex} />
           <Metric label="i10-index" value={metrics.i10Index} />
         </dl>
@@ -59,12 +52,20 @@ export function Publications() {
           <p>
             Metrics from{" "}
             <a
-              className="text-dark-sage font-medium underline underline-offset-2"
+              className="text-dark-sage inline-flex items-center gap-0.5"
               href="https://scholar.google.com/citations?user=38FsWSAAAAAJ"
               target="_blank"
               rel="noreferrer"
             >
-              Google Scholar
+              <span className="underline underline-offset-2">
+                Google Scholar
+              </span>
+              <span
+                className="material-symbols-rounded text-xs!"
+                aria-hidden="true"
+              >
+                open_in_new
+              </span>
             </a>
           </p>
           <p>Last updated: {lastUpdated}</p>
@@ -80,11 +81,9 @@ export function Publications() {
             Sort by
             <select
               id="sort-publications"
-              className="border-border bg-bg text-text rounded-md border px-3 py-2 font-medium"
+              className="border-border bg-bg text-text rounded-md border px-3 py-2"
               value={sortBy}
-              onChange={(event) =>
-                setSortBy(event.target.value as "citations" | "year")
-              }
+              onChange={(event) => setSortBy(event.target.value)}
             >
               <option value="citations">Citations</option>
               <option value="year">Publication date</option>
@@ -98,15 +97,12 @@ export function Publications() {
               className="grid gap-3 py-5 sm:grid-cols-[5.5rem_1fr_auto] sm:items-start"
               key={paper.doi}
             >
-              <time
-                className="text-secondary text-sm font-medium"
-                dateTime={paper.date}
-              >
-                {formatdate(paper.date)}
+              <time className="text-secondary text-sm" dateTime={paper.date}>
+                {dateFormat.format(new Date(`${paper.date}T00:00:00Z`))}
               </time>
               <div>
                 <a
-                  className="text-dark-sage font-semibold hover:underline"
+                  className="text-dark-sage font-bold hover:underline"
                   href={`https://doi.org/${paper.doi}`}
                   target="_blank"
                   rel="noreferrer"
@@ -127,7 +123,7 @@ export function Publications() {
                 </p>
               </div>
               <p className="text-secondary text-sm sm:text-right">
-                <span className="text-text block text-lg font-semibold">
+                <span className="text-text block text-lg font-bold">
                   {paper.citations}
                 </span>
                 citations
