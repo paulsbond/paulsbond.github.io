@@ -8,7 +8,7 @@ function Project(props: {
 }) {
   return (
     <a
-      className="border-border hover:border-sage flex items-center gap-3 rounded-lg border p-3 transition-all hover:shadow-sm"
+      className="border-border hover:border-sage relative flex items-center gap-3 rounded-lg border p-3 transition-all hover:shadow-sm"
       href={props.href}
       target="_blank"
       rel="noreferrer"
@@ -19,12 +19,12 @@ function Project(props: {
         </div>
       )}
       <div className="flex-1">
-        <h3 className="flex items-center gap-1 font-bold">
-          {props.title}
-          <span className="material-symbols-rounded">arrow_right_alt</span>
-        </h3>
+        <h3 className="font-bold">{props.title}</h3>
         <p className="text-secondary mt-1 text-sm">{props.description}</p>
       </div>
+      <span className="material-symbols-rounded text-secondary absolute top-3 right-3 text-base! leading-none">
+        open_in_new
+      </span>
     </a>
   );
 }
