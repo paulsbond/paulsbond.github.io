@@ -22,7 +22,7 @@ export const papers: Paper[] = [
         electron density
       </>
     ),
-    authors: "J Dialpuri, J Agirre, KD Cowtan, PS Bond",
+    authors: "JS Dialpuri, J Agirre, KD Cowtan, PS Bond",
     journal: "Nucleic Acids Research",
     date: "2024-08-20",
     volume: "52",
@@ -32,7 +32,7 @@ export const papers: Paper[] = [
   },
   {
     title: "Outcomes of the EMDataResource cryo-EM Ligand Modeling Challenge",
-    authors: "C Lawson",
+    authors: "CL Lawson, A Kryshtafovych, GD Pintilie",
     etAl: true,
     journal: "Nature Methods",
     date: "2024-06-25",
@@ -48,8 +48,8 @@ export const papers: Paper[] = [
         web app
       </>
     ),
-    authors: "J Dialpuri",
-    etAl: true,
+    authors:
+      "JS Dialpuri, H Bagdonas, LC Schofield, PT Pham, L Holland, PS Bond, F Sánchez Rodríguez, SJ McNicholas, J Agirre",
     journal: "Acta Crystallographica Section F",
     date: "2024-01-24",
     volume: "80",
@@ -91,7 +91,7 @@ export const papers: Paper[] = [
   {
     title:
       "Predicting the performance of automated crystallographic model-building pipelines",
-    authors: "E Alharbi, P Bond, R Calinescu, K Cowtan",
+    authors: "E Alharbi, PS Bond, R Calinescu, KD Cowtan",
     journal: "Acta Crystallographica Section D",
     date: "2021-11-29",
     volume: "77",
@@ -113,7 +113,7 @@ export const papers: Paper[] = [
   },
   {
     title: "Shift-field refinement of macromolecular atomic models",
-    authors: "K Cowtan, S Metcalfe, P Bond",
+    authors: "KD Cowtan, S Metcalfe, PS Bond",
     journal: "Acta Crystallographica Section D",
     date: "2020-11-19",
     volume: "76",
@@ -138,7 +138,7 @@ export const papers: Paper[] = [
   },
   {
     title: "Design and Synthesis of 56 Shape-Diverse 3D Fragments",
-    authors: "P O'Brien",
+    authors: "TD Downes, SP Jones, HF Klein, MC Wheldon",
     etAl: true,
     journal: "Chemistry - A European Journal",
     date: "2020-07-08",
@@ -160,8 +160,8 @@ export const papers: Paper[] = [
   {
     title:
       "Increase of enzyme activity through specific covalent modification with fragments",
-    authors: "JF Darby",
-    etAl: true,
+    authors:
+      "JF Darby, M Atobe, JD Firth, PS Bond, GJ Davies, P O'Brien, RE Hubbard",
     journal: "Chemical Science",
     date: "2017-09-27",
     volume: "8",
@@ -172,8 +172,8 @@ export const papers: Paper[] = [
   {
     title:
       "Analysis of HypD Disulfide Redox Chemistry via Optimization of Fourier Transformed ac Voltammetric Data",
-    authors: "H Adamson, M Robinson",
-    etAl: true,
+    authors:
+      "H Adamson, M Robinson, PS Bond, B Soboh, K Gillow, AN Simonov, DM Elton, AM Bond, RG Sawers, DJ Gavaghan, A Parkin",
     journal: "Analytical Chemistry",
     date: "2017-01-19",
     volume: "89",
@@ -184,8 +184,8 @@ export const papers: Paper[] = [
   {
     title:
       "Lead-oriented synthesis: Investigation of organolithium-mediated routes to 3-D scaffolds and 3-D shape analysis of a virtual lead-like library",
-    authors: "M Lüthy, MC Wheldon, C Haji-Cheteh",
-    etAl: true,
+    authors:
+      "M Lüthy, MC Wheldon, C Haji-Cheteh, M Atobe, PS Bond, P O'Brien, RE Hubbard, IJS Fairlamb",
     journal: "Bioorganic & Medicinal Chemistry",
     date: "2015-06-01",
     volume: "23",
