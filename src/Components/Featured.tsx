@@ -1,11 +1,20 @@
 import { SubHeading } from "./SubHeading";
 
-function Project(props: { title: string; description: string; image: string }) {
+function Project(props: {
+  title: string;
+  description: string;
+  image: string;
+  href: string;
+}) {
   return (
-    <a href="" className="border-border flex-1 flex-col rounded-lg border">
+    <a
+      href={props.href}
+      className="border-border flex flex-col rounded-lg border"
+    >
       <img
         src={props.image}
-        className="aspect-3/1 w-full min-w-xs rounded-t-lg object-cover"
+        className="aspect-3/1 w-full rounded-t-lg object-cover"
+        alt=""
       />
       <div className="flex flex-col gap-2 p-4">
         <h3 className="text-lg font-bold">{props.title}</h3>
@@ -21,25 +30,28 @@ function Project(props: { title: string; description: string; image: string }) {
 
 export function Featured() {
   return (
-    <div>
+    <section>
       <SubHeading>Featured Projects</SubHeading>
-      <div className="flex flex-wrap gap-4">
+      <div className="grid gap-4 sm:grid-cols-3">
         <Project
           title="ModelCraft"
           description="Automated model-building pipeline for X-ray crystallography and cryo-EM."
           image="images/modelcraft.png"
+          href="https://github.com/paulsbond/modelcraft"
         />
         <Project
           title="NucleoFind"
           description="Deep-learning network for locating nucleic acid features in a map."
           image="images/nucleofind.png"
+          href="https://github.com/dialpuri/nucleofind"
         />
         <Project
           title="CCP4"
           description="Comprehensive software suite for macromolecular crystallography."
           image="images/ccp4banner.webp"
+          href="https://www.ccp4.ac.uk/"
         />
       </div>
-    </div>
+    </section>
   );
 }
