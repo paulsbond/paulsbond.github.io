@@ -9,7 +9,7 @@ function Project(props: {
   return (
     <a
       href={props.href}
-      className="border-border flex flex-col rounded-lg border"
+      className="border-border hover:border-sage flex flex-col rounded-lg border"
     >
       <img
         src={props.image}
