@@ -22,14 +22,14 @@ export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="border-border relative m-auto flex items-center justify-between border-b p-3">
+    <nav className="border-border bg-bg sticky top-0 z-50 m-auto flex items-center justify-between border-b p-3">
       <NavLink to="" className="flex items-center gap-4">
         <img src="favicon.svg" className="h-10 w-10" />
         <p className="text-xl">Paul Bond</p>
       </NavLink>
       <div className="hidden items-center gap-6 md:flex">
         {links.map(({ to, text }) => (
-          <NavLink key={to} to={to} className="rounded-md px-4 py-2">
+          <NavLink key={to} to={to} className="rounded-md px-1 py-2">
             {text}
           </NavLink>
         ))}
