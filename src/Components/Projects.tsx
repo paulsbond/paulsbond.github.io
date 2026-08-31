@@ -8,17 +8,17 @@ function Project(props: {
 }) {
   return (
     <a
-      className="border-border hover:border-sage flex items-center gap-3 rounded-lg border p-3"
+      className="border-border hover:border-sage flex items-center gap-3 rounded-lg border p-3 transition-all hover:shadow-sm"
       href={props.href}
+      target="_blank"
+      rel="noreferrer"
     >
       {props.image && (
-        <img
-          src={props.image}
-          alt=""
-          className="aspect-square size-12 shrink-0 object-contain"
-        />
+        <div className="bg-light-sage/50 flex size-12 shrink-0 items-center justify-center rounded-full">
+          <img src={props.image} alt="" className="size-full object-contain" />
+        </div>
       )}
-      <div className="flex-auto">
+      <div className="flex-1">
         <h3 className="flex items-center gap-1 font-bold">
           {props.title}
           <span className="material-symbols-rounded">arrow_right_alt</span>

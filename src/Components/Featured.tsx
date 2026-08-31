@@ -9,16 +9,22 @@ function Project(props: {
   return (
     <a
       href={props.href}
-      className="border-border hover:border-sage flex flex-col rounded-lg border"
+      className="border-border hover:border-sage flex flex-col justify-between rounded-lg border transition-all hover:shadow-sm"
+      target="_blank"
+      rel="noreferrer"
     >
-      <img
-        src={props.image}
-        className="aspect-3/1 w-full rounded-t-lg object-cover"
-        alt=""
-      />
-      <div className="flex flex-col gap-2 p-4">
-        <h3 className="text-lg font-bold">{props.title}</h3>
-        <p>{props.description}</p>
+      <div>
+        <img
+          src={props.image}
+          className="aspect-3/1 w-full rounded-t-lg object-cover"
+          alt=""
+        />
+        <div className="flex flex-col gap-2 p-4">
+          <h3 className="text-lg font-bold">{props.title}</h3>
+          <p>{props.description}</p>
+        </div>
+      </div>
+      <div className="p-4 pt-0">
         <p className="text-dark-sage flex items-center gap-2 text-sm">
           <span>View project</span>
           <span className="material-symbols-rounded">arrow_right_alt</span>
