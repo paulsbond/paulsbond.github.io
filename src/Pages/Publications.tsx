@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { lastUpdated, papers, type Paper } from "../papers";
 
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
 function calculateMetrics(publications: Paper[]) {
   const citations = publications
     .map((paper) => paper.citations)
@@ -97,9 +91,7 @@ export function Publications() {
               className="grid gap-3 py-5 sm:grid-cols-[5.5rem_1fr_auto] sm:items-start"
               key={paper.doi}
             >
-              <time className="text-secondary text-sm" dateTime={paper.date}>
-                {dateFormat.format(new Date(`${paper.date}T00:00:00Z`))}
-              </time>
+              <p className="text-secondary text-sm">{paper.date.slice(0, 4)}</p>
               <div>
                 <a
                   className="text-dark-sage font-bold hover:underline"
