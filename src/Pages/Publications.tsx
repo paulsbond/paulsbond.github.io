@@ -32,11 +32,11 @@ export function Publications() {
   });
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <h1 className="mt-1 text-3xl font-bold sm:text-4xl">Publications</h1>
+    <main>
+      <h1 className="mt-1 py-6 text-3xl font-bold sm:text-4xl">Publications</h1>
 
-      <section className="py-7" aria-label="Publication metrics">
-        <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <section className="mb-6" aria-label="Publication metrics">
+        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Metric label="Total publications" value={papers.length} />
           <Metric label="Citations" value={metrics.citations} />
           <Metric label="h-index" value={metrics.hIndex} />
@@ -88,11 +88,11 @@ export function Publications() {
         <ol className="divide-border divide-y">
           {sortedPapers.map((paper) => (
             <li
-              className="grid gap-3 py-5 sm:grid-cols-[5.5rem_1fr_auto] sm:items-start"
+              className="grid gap-x-6 gap-y-2 py-4 sm:grid-cols-[auto_1fr_auto] sm:items-center"
               key={paper.doi}
             >
               <p className="text-secondary text-sm">{paper.date.slice(0, 4)}</p>
-              <div>
+              <div className="min-w-0">
                 <a
                   className="text-dark-sage font-bold hover:underline"
                   href={`https://doi.org/${paper.doi}`}
@@ -115,7 +115,7 @@ export function Publications() {
                 </p>
               </div>
               <p className="text-secondary text-sm sm:text-right">
-                <span className="text-text block text-lg font-bold">
+                <span className="text-text mr-2 text-lg font-bold sm:mr-0 sm:block">
                   {paper.citations}
                 </span>
                 citations
