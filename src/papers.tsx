@@ -12,7 +12,7 @@ export interface Paper {
   citations: number;
 }
 
-export const lastUpdated = "30 August 2026";
+export const lastUpdated = "10 October 2026";
 
 export const papers: Paper[] = [
   {
@@ -28,7 +28,7 @@ export const papers: Paper[] = [
     volume: "52",
     pages: "e84",
     doi: "10.1093/nar/gkae715",
-    citations: 2,
+    citations: 3,
   },
   {
     title: "Outcomes of the EMDataResource cryo-EM Ligand Modeling Challenge",
@@ -55,7 +55,7 @@ export const papers: Paper[] = [
     volume: "80",
     pages: "30",
     doi: "10.1107/S2053230X24000359",
-    citations: 19,
+    citations: 20,
   },
   {
     title: (
@@ -71,7 +71,7 @@ export const papers: Paper[] = [
     volume: "79",
     pages: "449",
     doi: "10.1107/S2059798323003595",
-    citations: 1054,
+    citations: 1110,
   },
   {
     title: (
@@ -86,7 +86,7 @@ export const papers: Paper[] = [
     volume: "78",
     pages: "1090",
     doi: "10.1107/S2059798322007732",
-    citations: 52,
+    citations: 58,
   },
   {
     title:
@@ -109,7 +109,7 @@ export const papers: Paper[] = [
     volume: "18",
     pages: "156",
     doi: "10.1038/s41592-020-01051-w",
-    citations: 127,
+    citations: 133,
   },
   {
     title: "Shift-field refinement of macromolecular atomic models",
@@ -134,7 +134,7 @@ export const papers: Paper[] = [
     volume: "76",
     pages: "713",
     doi: "10.1107/S2059798320009080",
-    citations: 40,
+    citations: 41,
   },
   {
     title: "Design and Synthesis of 56 Shape-Diverse 3D Fragments",
@@ -145,7 +145,7 @@ export const papers: Paper[] = [
     volume: "26",
     pages: "8969",
     doi: "10.1002/chem.202001123",
-    citations: 68,
+    citations: 71,
   },
   {
     title: "Comparison of automated crystallographic model-building pipelines",
@@ -191,6 +191,6 @@ export const papers: Paper[] = [
     volume: "23",
     pages: "2680",
     doi: "10.1016/j.bmc.2015.04.005",
-    citations: 35,
+    citations: 37,
   },
 ];
