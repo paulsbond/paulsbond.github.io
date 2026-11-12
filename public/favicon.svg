@@ -4,7 +4,6 @@
   viewBox="0 0 500 500"
   style="
     background: black;
-    dominant-baseline: middle;
     font-family: Arial, sans-serif;
     font-weight: 700;
     text-anchor: middle;
@@ -17,7 +16,7 @@
     height="460"
     style="fill: rgb(200, 200, 200)"
   />
-  <text style="font-size: 70px" x="80" y="80">89</text>
-  <text style="font-size: 300px" x="250" y="250">Pb</text>
-  <text style="font-size: 80px" x="250" y="410">Paul Bond</text>
+  <text dominant-baseline="middle" style="font-size: 70px" x="80" y="80">89</text>
+  <text dominant-baseline="middle" style="font-size: 300px" x="250" y="250">Pb</text>
+  <text dominant-baseline="middle" style="font-size: 80px" x="250" y="410">Paul Bond</text>
 </svg>
