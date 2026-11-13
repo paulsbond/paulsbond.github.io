@@ -7,6 +7,7 @@ import { Footer } from "./Components/Footer";
 import { Nav } from "./Components/Nav";
 import { Home } from "./Pages/Home";
 import { Publications } from "./Pages/Publications";
+import { Talks } from "./Pages/Talks";
 
 const root = document.getElementById("root")!;
 createRoot(root).render(
@@ -16,6 +17,7 @@ createRoot(root).render(
       <Routes>
         <Route index element={<Home />} />
         <Route path="publications" element={<Publications />} />
+        <Route path="talks" element={<Talks />} />
       </Routes>
       <Footer />
     </StrictMode>

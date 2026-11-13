@@ -4,6 +4,7 @@ import { NavLink } from "react-router";
 const links = [
   { to: "", text: "Home" },
   { to: "publications", text: "Publications" },
+  { to: "talks", text: "Talks" },
 ];
 
 function Contact({ className }: { className: string }) {
