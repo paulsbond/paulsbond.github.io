@@ -10,6 +10,12 @@ export interface Talk {
 
 export const talks: Talk[] = [
   {
+    date: "2026-11-30",
+    title: "Automated model building and density modification",
+    event: "DLS-CCP4 Data Collection and Structure Solution Workshop",
+    location: { venue: "Diamond Light Source, Oxfordshire", country: "UK" },
+  },
+  {
     date: "2026-11-10",
     title: "Automated model building in cryo-EM",
     event: "CCP-EM Icknield Model Building Workshop",

@@ -12,7 +12,7 @@ export interface Paper {
   citations: number;
 }
 
-export const lastUpdated = "10 October 2026";
+export const lastUpdated = "25 November 2026";
 
 export const papers: Paper[] = [
   {
@@ -39,7 +39,7 @@ export const papers: Paper[] = [
     volume: "21",
     pages: "1340",
     doi: "10.1038/s41592-024-02321-7",
-    citations: 16,
+    citations: 17,
   },
   {
     title: (
@@ -55,7 +55,7 @@ export const papers: Paper[] = [
     volume: "80",
     pages: "30",
     doi: "10.1107/S2053230X24000359",
-    citations: 20,
+    citations: 21,
   },
   {
     title: (
@@ -71,7 +71,7 @@ export const papers: Paper[] = [
     volume: "79",
     pages: "449",
     doi: "10.1107/S2059798323003595",
-    citations: 1110,
+    citations: 1151,
   },
   {
     title: (
@@ -86,7 +86,7 @@ export const papers: Paper[] = [
     volume: "78",
     pages: "1090",
     doi: "10.1107/S2059798322007732",
-    citations: 58,
+    citations: 61,
   },
   {
     title:
@@ -109,7 +109,7 @@ export const papers: Paper[] = [
     volume: "18",
     pages: "156",
     doi: "10.1038/s41592-020-01051-w",
-    citations: 133,
+    citations: 136,
   },
   {
     title: "Shift-field refinement of macromolecular atomic models",
@@ -134,7 +134,7 @@ export const papers: Paper[] = [
     volume: "76",
     pages: "713",
     doi: "10.1107/S2059798320009080",
-    citations: 41,
+    citations: 42,
   },
   {
     title: "Design and Synthesis of 56 Shape-Diverse 3D Fragments",
@@ -191,6 +191,6 @@ export const papers: Paper[] = [
     volume: "23",
     pages: "2680",
     doi: "10.1016/j.bmc.2015.04.005",
-    citations: 37,
+    citations: 36,
   },
 ];
