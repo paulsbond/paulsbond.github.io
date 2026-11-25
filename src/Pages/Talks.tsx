@@ -16,6 +16,19 @@ function groupByYear(list: Talk[]) {
   return [...groups];
 }
 
+function plural(count: number, singular: string, pluralForm: string) {
+  return `${count} ${count === 1 ? singular : pluralForm}`;
+}
+
+function summarise(list: Talk[]) {
+  const countries = new Set(list.map(countryOf));
+  countries.delete(ONLINE);
+  const talkText = plural(list.length, "talk", "talks");
+  return countries.size === 0
+    ? `${talkText} online`
+    : `${talkText} in ${plural(countries.size, "country", "countries")}`;
+}
+
 function CountryFilter({
   label,
   count,
@@ -132,7 +145,6 @@ export function Talks() {
       countB - countA ||
       nameA.localeCompare(nameB),
   );
-  const countryCount = filters.filter(([name]) => name !== ONLINE).length;
 
   const shownTalks = talks
     .filter((talk) => selected === null || countryOf(talk) === selected)
@@ -140,13 +152,13 @@ export function Talks() {
 
   return (
     <main>
-      <h1 className="mt-1 py-6 text-3xl font-bold sm:text-4xl">Talks</h1>
+      <div className="mt-1 flex flex-wrap items-baseline gap-x-4 gap-y-1 pt-6 pb-4">
+        <h1 className="text-3xl font-bold sm:text-4xl">Talks</h1>
+        <p className="text-secondary text-sm">{summarise(talks)}</p>
+      </div>
 
       <section className="mb-6" aria-label="Filter by country">
-        <p className="text-secondary text-sm">
-          {talks.length} talks in {countryCount} countries
-        </p>
-        <ul className="mt-3 flex flex-wrap gap-2">
+        <ul className="flex flex-wrap gap-2">
           {filters.map(([name, count]) => (
             <CountryFilter
               key={name}
@@ -163,9 +175,14 @@ export function Talks() {
 
       {groupByYear(shownTalks).map(([year, yearTalks]) => (
         <section key={year} className="mb-6">
-          <h2 className="border-border border-b pb-2 text-xl font-bold">
-            {year}
-          </h2>
+          <div className="border-border flex flex-wrap items-baseline gap-x-3 border-b pb-2">
+            <h2 className="text-xl font-bold">{year}</h2>
+            <p className="text-secondary text-sm">
+              {selected === null
+                ? summarise(yearTalks)
+                : plural(yearTalks.length, "talk", "talks")}
+            </p>
+          </div>
           <ol className="divide-border divide-y">
             {yearTalks.map((talk, index) => (
               <TalkItem key={`${talk.date}-${index}`} talk={talk} />
